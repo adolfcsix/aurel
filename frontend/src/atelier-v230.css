@@ -1,0 +1,80 @@
+/* AUREL V2.30 — Maison Rhythm & Form Clarity
+   Composition and accessibility refinements. No changes to data, API, authorization.
+   Preserves the unified 14px action silhouette and opt-in Pearl finish. */
+:root{
+ --maison-30-paper:#faf9f5;
+ --maison-30-ink:#243d32;
+ --maison-30-muted:#65776b;
+ --maison-30-hairline:#e1e3d9;
+ --maison-30-gold:#a38b65;
+ --maison-30-motion:cubic-bezier(.22,.76,.28,1);
+}
+/* Editorial rhythm: legibility takes priority over overly small luxury lettering. */
+.content-wrap{color:var(--maison-30-ink);}
+.page-header{gap:clamp(18px,2.8vw,35px);align-items:end;}
+.page-header h1{font-size:clamp(33px,3vw,46px);line-height:1.12;max-width:25ch;letter-spacing:-.036em;}
+.page-header .page-subtitle{font-size:14px;line-height:1.7;max-width:66ch;color:var(--maison-30-muted);}
+.page-actions{gap:10px;align-content:flex-end;}
+.sidebar .nav-item{font-size:13px;min-height:48px;line-height:1.46;}
+.sidebar .nav-group-label{font-size:11px;line-height:1.5;letter-spacing:.025em;}
+.sidebar .aurel-workspace-context>small{font-size:12px;max-width:25ch;}
+.sidebar .side-help{font-size:12px;}
+.breadcrumb-active,.breadcrumb-root{font-size:13px;}
+.content-wrap :is(.panel,.table-frame){border-color:var(--maison-30-hairline);}
+.content-wrap :is(.data-grid,.aurel-dossier-details){font-variant-numeric:tabular-nums;}
+.content-wrap .data-grid :is(th,td){line-height:1.55;}
+.content-wrap .data-grid th{font-size:11.5px;letter-spacing:.025em;}
+.content-wrap .data-grid td{font-size:13.5px;}
+.content-wrap :is(.btn,.aurel-record-action,.aurel-record-quiet){font-weight:610;letter-spacing:0;line-height:1.4;}
+.content-wrap :is(.btn,.aurel-record-action,.aurel-record-quiet):focus-visible{outline-offset:3px;}
+/* The long record editor behaves like a small curated document, not a crowded form. */
+.editor.atelier-editor{background:var(--maison-30-paper);border-color:#dadfd4;box-shadow:0 30px 88px #14271e35;}
+.atelier-editor .editor-head{background:#fffefa;border-bottom-color:var(--maison-30-hairline);padding-block:27px 25px;}
+.atelier-editor .editor-head h2{font-family:'Palatino Linotype','Book Antiqua',Georgia,'Noto Serif',serif;font-weight:500;letter-spacing:-.035em;line-height:1.17;font-size:clamp(28px,2.7vw,37px);color:var(--maison-30-ink);}
+.atelier-editor .editor-head p{font-size:13.5px;line-height:1.72;max-width:65ch;}
+.atelier-editor .editor-body{background:var(--maison-30-paper);}
+.atelier-form-intro{border-left:2px solid var(--maison-30-gold);border-radius:0;background:#f0f1e9;color:#455b4b;padding:13px 18px;font-size:13.5px;line-height:1.7;}
+.atelier-form-contents{grid-template-columns:minmax(166px,185px) minmax(0,1fr);gap:clamp(22px,3.6vw,42px);}
+.atelier-form-toc{border-color:var(--maison-30-hairline);gap:3px;}
+.atelier-toc-title{font-size:11px;letter-spacing:.04em;margin-bottom:13px;color:#796d5c;}
+.atelier-toc-title small{font-size:10.5px;letter-spacing:.02em;}
+.atelier-form-toc button{min-height:44px;padding:10px 11px;font-size:13px;border-radius:14px!important;transition:background-color .18s var(--maison-30-motion),color .18s var(--maison-30-motion);}
+.atelier-form-toc button[aria-current="location"]{color:#1e4936;background:#e9ece4;font-weight:650;}
+.atelier-form-toc button[aria-current="location"] b{color:#7f6748;}
+.atelier-editor-section{border-color:var(--maison-30-hairline);scroll-margin-top:22px;}
+.atelier-section-head{grid-template-columns:32px minmax(0,1fr);gap:15px;}
+.atelier-section-index{border-radius:12px;background:#f0ede5;border-color:#e3dbcd;color:#876e4d;}
+.atelier-section-head h3{font-family:'Palatino Linotype',Georgia,serif;font-weight:500;font-size:clamp(20px,2vw,24px);letter-spacing:-.02em;color:#23483a;outline-offset:3px;}
+.atelier-section-head p{font-size:13px;line-height:1.65;max-width:55ch;}
+.atelier-editor .editor-grid{row-gap:20px;column-gap:25px;}
+.atelier-editor .form-field>label{font-size:13.5px;font-weight:620;color:#314b3c;line-height:1.55;}
+.atelier-editor .field-input{min-height:50px;padding:12px 14px;border-radius:12px;border-color:#cdd7cb;font-size:14px;line-height:1.5;color:#203f30;background:#fffefa;}
+.atelier-editor .field-input:hover:not(:disabled){border-color:#9fb19e;}
+.atelier-editor .field-input:focus-visible{border-color:#9b815c;outline:2px solid #9b815c!important;outline-offset:2px!important;box-shadow:none;}
+.atelier-editor .form-field small{font-size:12px;line-height:1.55;}
+.atelier-editor .editor-foot{background:#fffefa;border-color:var(--maison-30-hairline);padding-block:17px;}
+.atelier-editor .editor-foot .btn{min-height:48px;padding-inline:19px;font-size:13.5px;}
+.atelier-editor .editor-head .icon-btn{min-height:44px;min-width:44px;}
+.atelier-editor .editor-foot>span{font-size:12px;}
+.atelier-discard-panel{padding:clamp(23px,3vw,31px);border-color:#dadfd4;}
+.atelier-discard-panel h3{font-family:Georgia,serif;font-size:25px;font-weight:500;letter-spacing:-.025em;}
+.atelier-discard-panel p{font-size:13.5px;}
+@media(max-width:1000px){.page-header{align-items:start;} .page-header h1{font-size:clamp(31px,3.7vw,40px);}}
+@media(max-width:800px){.sidebar .nav-item{min-height:48px;font-size:13.5px;} .aurel-workspace-context{margin-bottom:18px;} .page-header{gap:18px;}}
+@media(max-width:760px){
+ .atelier-editor .editor-head{padding:21px 20px 18px;}
+ .atelier-editor .editor-head h2{font-size:29px;}
+ .atelier-editor .editor-body{padding:18px 20px 25px;}
+ .atelier-mobile-jump{margin-bottom:15px;}
+ .atelier-mobile-jump span{font-size:12px;letter-spacing:.015em;font-weight:650;text-transform:none;color:#536857;}
+ .atelier-mobile-jump select{height:49px;border-radius:14px;background:#f4f4ed;color:#254738;font-weight:600;}
+ .atelier-editor .editor-grid{row-gap:17px;}
+ .atelier-editor .field-input{font-size:16px;min-height:50px;}
+ .atelier-editor-section{padding-block:27px;}
+ .atelier-editor .editor-foot{padding:12px 17px calc(13px + env(safe-area-inset-bottom,0px));gap:10px;}
+ .atelier-editor .editor-foot .btn{min-height:49px;font-size:13.5px;}
+ .page-header h1{font-size:clamp(30px,7.3vw,38px);}
+ .page-header .page-subtitle{font-size:13.5px;}
+}
+@media(max-width:360px){.atelier-editor .editor-head h2{font-size:26px;} .atelier-editor .editor-body{padding-inline:16px;} .atelier-editor .editor-foot{padding-inline:13px;}}
+@media(prefers-reduced-motion:reduce){.atelier-form-toc button,.atelier-editor :is(button,input,select){transition:none!important;animation:none!important;}}

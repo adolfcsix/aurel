@@ -1,0 +1,87 @@
+/* AUREL V2.27 — Maison Continuity. Form follows task; luxury through clarity and rhythm. */
+:root {
+  --aurel-27-motion: 220ms;
+  --aurel-27-ease: cubic-bezier(.22,1,.36,1);
+  --aurel-27-paper: #fcfaf5;
+  --aurel-27-ink: #243d33;
+  --aurel-27-rule: #d9ded4;
+  --aurel-27-satin: #eeeae0;
+  --aurel-27-gold: #9d825f;
+}
+/* The new dossier is a document, not a second dashboard. */
+.aurel-dossier-sheet {background:var(--aurel-27-paper);border-radius:18px; box-shadow:0 24px 80px rgba(6,24,18,.29),0 2px 8px rgba(6,24,18,.09)}
+.aurel-dossier-top {background:#f5f2eb;flex-shrink:0}
+.aurel-dossier-monogram {border-radius:10px}
+.aurel-dossier-signature {color:#39594a;letter-spacing:.11em}
+.aurel-dossier-back,.v09-dossier-toolbar .aurel-dossier-back {
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  margin-left:clamp(5px,2vw,22px);padding:0 16px;min-height:44px;
+  border:1px solid #ccd6ca;border-radius:14px;
+  background:#edf1e9;color:#284638;font-size:13px;font-weight:600;line-height:1.3;font-family:inherit;
+  cursor:pointer;white-space:nowrap;
+}
+.aurel-dossier-back:hover {background:#e4ece2;border-color:#a4b9ac}
+.aurel-dossier-back:focus-visible {outline:3px solid #a17e48;outline-offset:3px}
+.aurel-dossier-hero {position:relative;isolation:isolate;overflow:hidden;
+  background:linear-gradient(119deg,#18382f 0%,#244b3f 68%,#2e5348 100%)}
+.aurel-dossier-hero:after {content:'';position:absolute;inset:auto -8% -72% auto;width:min(38vw,390px);aspect-ratio:1;border:1px solid rgba(213,192,151,.23);border-radius:50%;z-index:-1;pointer-events:none}
+.aurel-dossier-hero h2 {font-family:'Palatino Linotype','Book Antiqua',Georgia,'Noto Serif',serif;font-weight:400;font-size:clamp(30px,3.7vw,49px);letter-spacing:-.037em;line-height:1.2;max-width:26ch}
+.aurel-dossier-hero-copy>p:last-child {font-size:clamp(13px,1.05vw,15px);max-width:58ch;line-height:1.7}
+.aurel-dossier-scroll {scrollbar-gutter:stable;scroll-behavior:smooth;}
+.aurel-dossier-contents {display:flex;align-items:center;gap:14px;justify-content:space-between;padding:13px 16px 14px;margin:0 0 25px;background:#f3f0e7;border:1px solid var(--aurel-27-rule);border-radius:14px}
+.aurel-dossier-contents>span {font:600 11px/1.5 'Be Vietnam Pro',Inter,'Segoe UI',sans-serif;color:#4d6658;white-space:nowrap;letter-spacing:.015em}
+.aurel-dossier-contents>div {display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.aurel-dossier-contents button {display:inline-flex;align-items:center;gap:8px;border:1px solid transparent;border-radius:14px;min-height:44px;padding:9px 13px;background:transparent;color:#29483b;cursor:pointer;font:600 12px/1.35 'Be Vietnam Pro',Inter,'Segoe UI',sans-serif;transition:background var(--aurel-27-motion) var(--aurel-27-ease),border-color var(--aurel-27-motion) var(--aurel-27-ease)}
+.aurel-dossier-contents button:hover {background:#fffdfa;border-color:#d7d5c9}
+.aurel-dossier-contents button:focus-visible {outline:3px solid #ae8855;outline-offset:2px}
+.aurel-dossier-contents button small {font:500 10px/1.2 'Be Vietnam Pro',Inter,'Segoe UI',sans-serif;color:#8a755d}
+.aurel-dossier-block {scroll-margin-top:20px;margin-top:clamp(25px,3vw,38px);padding-top:clamp(24px,3vw,33px);}
+.aurel-dossier-block h3 {font-family:'Palatino Linotype','Book Antiqua',Georgia,'Noto Serif',serif;line-height:1.26;}
+.aurel-dossier-detail {background:#fffefa;border:1px solid #e4e4dc;box-shadow:0 1px 0 rgba(255,255,255,.8) inset;}
+.aurel-dossier-detail strong {line-height:1.65;font-weight:550;}
+.aurel-dossier-kpis>div {background:#fffefa;border-color:#dce0d7}
+.aurel-dossier-record {transition:border-color var(--aurel-27-motion) var(--aurel-27-ease),box-shadow var(--aurel-27-motion) var(--aurel-27-ease);}
+.aurel-dossier-record:hover {border-color:#c4d0c3;box-shadow:0 5px 18px rgba(28,57,45,.035)}
+.aurel-dossier-bottom {background:#f4f2ea}
+.aurel-dossier-bottom .btn,.aurel-dossier-contents button,.aurel-dossier-back {border-radius:14px!important}
+/* The original unit record participates in the same visual/interaction language. */
+.v09-dossier-toolbar {position:relative;gap:8px;}
+.v09-dossier-toolbar .aurel-dossier-back {margin-left:auto;margin-right:12px}
+.v09-dossier-toolbar .v09-dossier-exit {margin-left:0}
+.v09-dossier .v09-dossier-tabs button {transition:background var(--aurel-27-motion) var(--aurel-27-ease),color var(--aurel-27-motion) var(--aurel-27-ease)}
+.v09-dossier .v09-profile-pair {overflow-wrap:anywhere}
+/* No decorative effects for financial, destructive or irreversible actions. */
+:is(.aurel-dossier-sheet,.v09-dossier) :is(.btn.danger,.btn.dangerGhost,[data-aurel-tone="danger"],[data-aurel-tone="dangerGhost"]) {filter:none!important;animation:none!important;transform:none!important;}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+ .aurel-dossier-back:hover {transform:translateY(-1px)}
+ .aurel-dossier-back {transition:background var(--aurel-27-motion) var(--aurel-27-ease),border-color var(--aurel-27-motion) var(--aurel-27-ease),transform var(--aurel-27-motion) var(--aurel-27-ease)}
+}
+@media(max-width:700px) {
+ .aurel-dossier-sheet {border-radius:0;}
+ .aurel-dossier-top {gap:8px}
+ .aurel-dossier-signature {font-size:10px;letter-spacing:.06em}
+ .aurel-dossier-back,.v09-dossier-toolbar .aurel-dossier-back {min-height:44px;padding:0 11px;margin-left:auto;font-size:12px}
+ .aurel-dossier-contents {align-items:stretch;flex-direction:column;gap:6px;margin-bottom:18px;padding:10px 12px}
+ .aurel-dossier-contents>div {justify-content:flex-start}
+ .aurel-dossier-contents button {padding:8px 11px;min-height:44px}
+ .aurel-dossier-hero {padding-top:26px;padding-bottom:27px}
+ .aurel-dossier-hero h2 {font-size:clamp(29px,7vw,36px)}
+ .aurel-dossier-scroll {scrollbar-gutter:auto}
+ .aurel-dossier-bottom {padding-bottom:max(12px,env(safe-area-inset-bottom,0px))}
+ .v09-dossier-toolbar .aurel-dossier-back {margin-right:2px}
+}
+@media(max-width:380px) {
+ .aurel-dossier-signature {font-size:9px;letter-spacing:0}
+ .aurel-dossier-monogram {display:none}
+ .aurel-dossier-close,.v09-dossier-toolbar .v09-dossier-exit {padding:0 10px;font-size:12px}
+ .aurel-dossier-back,.v09-dossier-toolbar .aurel-dossier-back {font-size:11px;padding:0 9px}
+ .aurel-dossier-contents>div {display:grid;grid-template-columns:1fr 1fr}
+ .aurel-dossier-contents button {justify-content:center}
+}
+@media(prefers-reduced-motion:reduce) {
+ .aurel-dossier-sheet *, .aurel-dossier-sheet *::before,.aurel-dossier-sheet *::after,.v09-dossier * {scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes aurel-maison-appear {from{opacity:.96;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+  .aurel-dossier-sheet,.v09-dossier {animation:aurel-maison-appear 250ms var(--aurel-27-ease) both}
+}

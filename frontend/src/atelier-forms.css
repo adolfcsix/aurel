@@ -1,0 +1,88 @@
+/* AUREL V1.7 — Atelier Form Craft. One canonical stylesheet for modal forms. */
+.editor.atelier-editor{width:min(940px,calc(100vw - 44px));max-height:min(92dvh,960px);background:#faf9f6;border:1px solid #e4e0d6;border-radius:15px;box-shadow:0 30px 100px rgba(19,29,22,.22);overflow:hidden;color:#28332b;position:relative}
+.atelier-editor .editor-head{background:#fffdf9;border-bottom:1px solid #e6e2d9;padding:27px 34px 23px;gap:24px}
+.atelier-editor .editor-head .eyebrow{color:#806c52;letter-spacing:1.35px;font-size:10px;line-height:1.4}
+.atelier-editor .editor-head h2{font-family:inherit;font-size:clamp(24px,2.5vw,32px);font-weight:690;color:#28332b;line-height:1.18;letter-spacing:-.9px;margin:9px 0 8px}
+.atelier-editor .editor-head p{max-width:62ch;color:#677168;font-size:13.5px;line-height:1.65;margin:0}
+.atelier-editor .editor-head .icon-btn{border:1px solid #e4e0d7;background:#fff;width:38px;height:38px;flex:0 0 auto;color:#4b5b4e}
+.atelier-editor .editor-head .icon-btn:hover{border-color:#a8b4a8;background:#f2f3ed}
+.atelier-editor form{min-height:0;display:flex;flex-direction:column;flex:1}
+.atelier-editor .editor-body{padding:22px 34px 28px;overflow-y:auto;overflow-x:hidden;min-height:0;overscroll-behavior:contain;scroll-behavior:smooth;background:#faf9f6}
+.atelier-form-intro{display:flex;align-items:flex-start;gap:11px;background:#f0f2eb;border-left:3px solid #6d806f;color:#46574b;padding:12px 17px;font-size:13px;line-height:1.65;margin-bottom:26px;border-radius:0 7px 7px 0}
+.atelier-form-intro svg{flex:0 0 auto;margin-top:2px}
+.atelier-form-contents{display:grid;grid-template-columns:174px minmax(0,1fr);gap:32px;align-items:start;min-width:0;max-width:100%}
+.atelier-form-toc{position:sticky;top:0;align-self:start;display:flex;flex-direction:column;gap:2px;border-right:1px solid #e0ded5;padding:4px 15px 20px 0;max-height:100%;min-width:0}
+.atelier-toc-title{font-size:10px;letter-spacing:1.15px;font-weight:770;color:#706e62;margin:5px 0 15px 8px;display:flex;flex-direction:column;gap:4px}
+.atelier-toc-title small{color:#6b6a5f;letter-spacing:.6px;font-size:10px}
+.atelier-form-toc button{appearance:none;width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:11px 9px;background:transparent;color:#616c62;font-size:12.5px;line-height:1.4;font-weight:590;border:0;border-radius:6px;white-space:normal}
+.atelier-form-toc button b{font-size:10px;font-variant-numeric:tabular-nums;color:#987e5d;font-weight:780;flex:0 0 auto}
+.atelier-form-toc button:hover,.atelier-form-toc button:focus-visible{background:#eceee7;color:#263b2e}
+.atelier-mobile-jump{display:none}
+.atelier-form-main,.atelier-editor .editor-grid,.atelier-editor .form-field{min-width:0}
+.atelier-editor-section{padding:28px 0 31px;border-bottom:1px solid #e3e0d7;scroll-margin-top:16px}
+.atelier-editor-section:first-child{padding-top:4px}
+.atelier-editor-section:last-child{border-bottom:0;padding-bottom:2px}
+.atelier-section-head{display:grid;grid-template-columns:33px minmax(0,1fr);align-items:start;gap:13px;margin-bottom:22px}
+.atelier-section-index{display:grid;place-items:center;width:32px;height:32px;border:1px solid #ddd7c9;color:#806b53;background:#f4f1e9;border-radius:7px;font-size:11px;font-weight:750;font-variant-numeric:tabular-nums}
+.atelier-section-head h3{font-size:17px;font-weight:690;letter-spacing:-.35px;color:#29362d;line-height:1.35;margin:0 0 6px}
+.atelier-section-head p{margin:0;max-width:60ch;font-size:12.5px;color:#667168;line-height:1.6}
+.atelier-editor .editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 19px}
+.atelier-editor .form-field>span{color:#465047;font-size:13px;font-weight:625;line-height:1.5}
+.atelier-editor .field-input{width:100%;min-height:47px;border:1px solid #d9dbd2;border-radius:8px;background:#fff;color:#25342b;box-shadow:none;padding:10px 13px;font-size:14px;line-height:1.45;transition:border-color .16s,box-shadow .16s}
+.atelier-editor .field-input:hover{border-color:#b7beb0}
+.atelier-editor .field-input:focus-visible{outline:2px solid #b3c0ac;outline-offset:1px;border-color:#637d69;box-shadow:0 0 0 3px rgba(106,132,110,.07)}
+.atelier-editor .field-input::placeholder{color:#667168}
+.atelier-editor textarea.field-input{min-height:100px;resize:vertical}
+.atelier-editor .form-field small{font-size:11.5px;color:#667168;line-height:1.5}
+.atelier-fee-estimate{margin-top:21px;background:#eef0e9;border:1px solid #e0e5dc;border-radius:8px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.atelier-fee-estimate span{display:flex;flex-direction:column;gap:5px;min-width:0}
+.atelier-fee-estimate span strong{font-size:13px;font-weight:680;color:#425147}
+.atelier-fee-estimate small{font-size:11.5px;color:#617063;line-height:1.5}
+.atelier-fee-estimate>b{font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap;color:#243b2c;letter-spacing:-.45px}
+.atelier-editor .editor-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 34px;border-top:1px solid #dedbd2;background:#fffdf9;flex:0 0 auto}
+.atelier-editor .editor-foot>span{font-size:12px;color:#607065;line-height:1.5;display:flex;align-items:center;gap:8px}
+.atelier-editor .editor-foot>div{display:flex;gap:10px;align-items:center}
+.atelier-editor .editor-foot .btn{min-height:45px;font-size:13px;padding:0 17px;border-radius:8px;box-shadow:none}
+.atelier-editor .editor-foot .btn.primary{background:#29392e;border-color:#29392e;color:white}
+.atelier-editor .editor-foot .btn.primary:hover{background:#3b5340}
+.atelier-discard-backdrop{position:absolute;inset:0;background:rgba(22,29,23,.5);z-index:60;display:grid;place-items:center;padding:20px;backdrop-filter:blur(3px)}
+.atelier-discard-panel{background:#fffefa;box-shadow:0 24px 80px #121d1542;border:1px solid #e4e0d6;width:min(390px,100%);border-radius:13px;padding:26px}
+.atelier-discard-kicker{color:#a16b4f;font-size:10px;font-weight:800;letter-spacing:1.8px}
+.atelier-discard-panel h3{font-size:21px;line-height:1.35;letter-spacing:-.5px;margin:10px 0;color:#28352c}
+.atelier-discard-panel p{font-size:13px;color:#647168;line-height:1.7;margin-bottom:22px}
+.atelier-discard-panel>div{display:flex;gap:9px;flex-wrap:wrap}
+.atelier-discard-panel .btn{flex:1;min-height:43px;font-size:12px;white-space:nowrap}
+.atelier-discard-panel .btn.dangerGhost{background:#fff5f0;color:#975847;border-color:#efd8ce}
+@media(max-width:760px){
+ .editor.atelier-editor{width:100vw;max-width:100vw;max-height:95dvh;border-radius:17px 17px 0 0;border-bottom:0}
+ .atelier-editor .editor-head{padding:19px 20px 17px}
+ .atelier-editor .editor-head h2{font-size:23px;letter-spacing:-.65px}
+ .atelier-editor .editor-head p{font-size:12.5px;line-height:1.6}
+ .atelier-editor .editor-head .icon-btn{width:40px;height:40px}
+ .atelier-editor .editor-body{padding:17px 20px 23px}
+ .atelier-form-intro{font-size:12.5px;line-height:1.6;padding:11px 13px;margin-bottom:18px}
+ .atelier-form-contents{display:block}
+ .atelier-form-toc{display:none}
+ .atelier-mobile-jump{display:flex;flex-direction:column;gap:7px;margin:0 0 10px;min-width:0}
+ .atelier-mobile-jump span{font-size:10px;letter-spacing:1.2px;color:#817664;font-weight:750}
+ .atelier-mobile-jump select{width:100%;height:47px;background:#f1eee7;border:1px solid #dfddd4;border-radius:8px;color:#334136;padding:0 12px;font-size:16px;font-weight:630}
+ .atelier-editor-section{padding:22px 0 24px}
+ .atelier-editor-section:first-child{padding-top:14px}
+ .atelier-section-head{grid-template-columns:30px minmax(0,1fr);gap:11px;margin-bottom:17px}
+ .atelier-section-index{width:29px;height:29px}
+ .atelier-section-head h3{font-size:16.5px}
+ .atelier-section-head p{font-size:12.5px}
+ .atelier-editor .editor-grid{grid-template-columns:minmax(0,1fr);gap:15px}
+ .atelier-editor .field-input{font-size:16px;min-height:48px}
+ .atelier-editor .editor-foot{padding:11px 16px calc(12px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:stretch;gap:8px}
+ .atelier-editor .editor-foot>span{font-size:11px;justify-content:center;text-align:center}
+ .atelier-editor .editor-foot>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px}
+ .atelier-editor .editor-foot .btn{min-height:49px;padding:0 8px;font-size:13px;white-space:normal}
+ .atelier-fee-estimate{align-items:flex-start;flex-direction:column;gap:9px;padding:14px}
+ .atelier-fee-estimate>b{font-size:23px}
+ .atelier-discard-panel>div{display:grid;grid-template-columns:1fr}
+}
+@media(max-width:350px){.atelier-editor .editor-head{padding:17px 16px 15px}.atelier-editor .editor-body{padding:14px 16px 18px}.atelier-editor .editor-head h2{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.atelier-editor *, .atelier-editor .editor-body{scroll-behavior:auto!important;transition:none!important}}
+/* Hidden state must win over display:grid (also used by the standalone preview). */
+.atelier-discard-backdrop[hidden]{display:none!important}

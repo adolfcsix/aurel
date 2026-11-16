@@ -1,0 +1,153 @@
+/* AUREL 2.22 — Surface stability and editorial legibility.
+   One restrained finish layer; no network fonts, no ornamental dependencies. */
+:root {
+  --aurel-body-font: "Be Vietnam Pro", "Segoe UI", "Noto Sans", Arial, sans-serif;
+  --aurel-deep-ink: #263b30;
+  --aurel-caption-ink: #5b6b61;
+  --aurel-outline: #d4d9cf;
+  --aurel-shell: #f6f4ef;
+  --aurel-white: #fffefa;
+  --aurel-inset-ring: #a58b66;
+  color-scheme: light;
+}
+html {scrollbar-gutter: stable;}
+body,button,input,select,textarea {font-family:var(--aurel-body-font);}
+body {letter-spacing:0;line-height:1.5;color:var(--aurel-deep-ink);background:var(--aurel-shell);}
+.main-area,.content-wrap,.page-header,.page-actions,.panel,.table-frame {min-width:0;}
+.page-header h1 {font-size:clamp(27px,2.6vw,39px);font-weight:680;letter-spacing:-.038em;line-height:1.17;color:#263c30;overflow-wrap:break-word;}
+.page-subtitle {font-size:13px;color:var(--aurel-caption-ink);max-width:68ch;line-height:1.65;}
+.overline,.eyebrow {font-size:10px;letter-spacing:.11em;color:#806d51;line-height:1.5;}
+.content-wrap :is(.panel-title h3,.pad-panel h3) {font-size:17px;line-height:1.35;letter-spacing:-.02em;color:#304237;}
+.content-wrap :is(.panel-counter,.vmetric-note,.stack-row small,.details-row span) {font-size:12px;color:var(--aurel-caption-ink);line-height:1.55;}
+.content-wrap .vmetric-top {font-size:12.5px;color:#51685a;}
+.content-wrap .vmetric strong {font-variant-numeric:tabular-nums;line-height:1.17;}
+
+/* Every small action is still a deliberate, inspectable action. */
+.btn,.icon-btn,.mobile-toggle,.mobile-sidebar-close,.text-link,.quality-open,
+.aurel-auth-reveal,.aurel-auth-textbutton,.portfolio-project,.aurel-auth-switch button,
+.aurel-access-actions button,.quality-filter button,.atelier-form-toc button {
+  min-height:44px;
+  touch-action:manipulation;
+}
+.icon-btn,.mobile-toggle,.mobile-sidebar-close {min-width:44px;min-height:44px;}
+.text-link,.quality-open {font-size:12.5px;line-height:1.4;padding:10px 8px;border-radius:6px;}
+.btn {white-space:normal;overflow-wrap:anywhere;line-height:1.35;}
+.btn:active:not(:disabled),.aurel-workbench-actions button:active:not(:disabled) {transform:translateY(0);}
+:where(.btn,.icon-btn,.nav-item,.text-link,.quality-open,.aurel-access-actions button):focus-visible {
+  outline:2px solid var(--aurel-inset-ring)!important;
+  outline-offset:3px!important;
+}
+:where(button,input,select,textarea):disabled {cursor:not-allowed;}
+:where(.btn,.icon-btn,.aurel-auth-submit)[aria-busy="true"] {cursor:progress;}
+
+/* Fix undersized legacy typography without changing table semantics or data values. */
+.data-grid th {font-size:10.5px;line-height:1.45;letter-spacing:.06em;color:#596c5e;}
+.data-grid td {font-size:12.5px;line-height:1.55;color:#405348;}
+.data-grid td .strong-cell {font-weight:670;color:#263e30;}
+.table-frame {max-width:100%;overscroll-behavior-x:contain;scrollbar-color:#b9c2b5 transparent;}
+.table-frame:focus-visible {outline:2px solid var(--aurel-inset-ring);outline-offset:-2px;}
+.data-grid tbody tr {background:var(--aurel-white);}
+.data-grid tbody tr:hover {background:#f6f7f1;}
+.data-grid tbody tr[role="button"] {cursor:pointer;}
+.data-grid tbody tr[role="button"]:focus-visible {background:#eff1e8;}
+.data-grid :is(th,td) {overflow-wrap:anywhere;}
+.empty-state {line-height:1.6;}
+.empty-state>strong {color:var(--aurel-deep-ink);}
+
+/* Keep forms calm: helper text is only shown for fields that actually need it. */
+.form-field>label,.form-field>span {font-size:13px;line-height:1.5;color:#344a3b;}
+.form-field small {font-size:12px;line-height:1.55;color:#536458;}
+.field-input {max-width:100%;width:100%;background:#fff;min-height:46px;font-size:14px;line-height:1.5;color:#263d30;}
+.field-input:hover:not(:disabled){border-color:#a5b3a4;}
+.field-input:focus-visible {border-color:#8a7451;}
+.form-field select.field-input {padding-right:30px;}
+input[type="date"],input[type="month"]{min-width:0;}
+textarea {overflow-wrap:anywhere;}
+.atelier-editor .editor-head .icon-btn {width:44px;height:44px;}
+.atelier-editor .editor-grid {gap:20px;}
+.atelier-editor .editor-foot {gap:20px;}
+.atelier-editor .editor-foot>div {flex-wrap:wrap;justify-content:flex-end;}
+.atelier-form-toc button {align-items:center;}
+.atelier-editor-section {scroll-margin-top:20px;}
+.atelier-discard-panel .btn,.aurel-decision-footer .btn {min-height:46px;}
+
+/* Navigation and status: active context must remain apparent at 320px. */
+.sidebar .nav-item {font-size:13px;line-height:1.5;min-height:46px;}
+.sidebar .nav-group-label {font-size:10px;color:#637469;}
+
+.sidebar .side-help small {font-size:11.5px;color:#607468;}
+.breadcrumb-root,.breadcrumb-active {font-size:12.5px;}
+.breadcrumb-active {color:#2d4736;}
+.top-date {color:#56685d;font-size:12px;}
+.nav-count {min-width:24px;text-align:center;}
+.aurel-sync-banner :is(strong,p) {overflow-wrap:break-word;}
+.aurel-feedback span {overflow-wrap:anywhere;}
+
+/* Priority workbenches and onboarding: clarity over dense visual noise. */
+.aurel-workbench-header p,.aurel-lease-desk-head p,.aurel-workbench-stage-note,
+.aurel-workbench-restricted,.aurel-lease-row-dates small {font-size:12.5px;line-height:1.65;}
+.aurel-workbench-figures dt {font-size:12px;}
+.aurel-workbench-figures dd {font-variant-numeric:tabular-nums;}
+.aurel-auth-heading>p {color:#5b675e;}
+.aurel-auth-hint,.aurel-auth-access-foot {color:#647166;font-size:12px;}
+.aurel-auth-form>label,.aurel-auth-label-row label {font-size:13px;}
+.aurel-auth-input input {font-size:14px;}
+.aurel-auth-input input::placeholder {color:#707a71;opacity:1;}
+.aurel-auth-reveal {min-width:44px;padding-inline:10px;font-size:12px;color:#475c4b;}
+.aurel-auth-textbutton {font-size:12px;padding:8px;}
+.aurel-auth-switch button {font-size:13px;padding-inline:6px;}
+.aurel-auth-error,.aurel-auth-success {font-size:13px;line-height:1.6;}
+.aurel-access-identity span,.aurel-account-popover-head small {color:#52675a;font-size:12px;}
+.aurel-access-status {font-size:12px;}
+.aurel-access-actions button {font-size:12px;line-height:1.45;}
+
+@media (max-width:800px) {
+ html {scrollbar-gutter:auto;}
+ .main-area {min-height:100dvh;}
+ .topbar {padding-inline:14px;gap:8px;}
+ 
+ .topbar-left {flex:1;}
+ .breadcrumb-root,.breadcrumb-chevron,.top-date {display:none;}
+ .breadcrumb-active {font-size:13.5px;max-width:min(45vw,260px);}
+ .topbar .aurel-top-search {min-width:44px;justify-content:center;padding-inline:11px;}
+ .content-wrap {padding:24px 16px 44px;}
+ .page-header {gap:16px;}
+ .page-actions {gap:8px;}
+ .page-actions .btn {flex:0 1 auto;}
+ .sidebar {overscroll-behavior:contain;}
+ 
+ .aurel-workbench-actions .btn,.aurel-lease-row-actions .btn {min-height:46px;}
+ .editor-foot>div {flex-wrap:wrap;}
+ .aurel-access-actions {gap:8px;}
+ .aurel-access-actions button {min-height:44px;padding-inline:12px;}
+}
+@media (max-width:480px) {
+ .content-wrap {padding:21px 13px 45px;}
+ .page-header h1 {font-size:28px;}
+ .page-subtitle {font-size:12.5px;}
+ .page-actions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;}
+ .page-actions .btn {width:100%;min-width:0;font-size:12px;padding:9px 10px;}
+ .page-actions .btn:only-child {grid-column:1/-1;}
+ .aurel-auth-access {padding-inline:18px;}
+ .aurel-auth-switch {grid-template-columns:1fr 1fr;gap:10px;}
+ .aurel-auth-switch button {font-size:12px;line-height:1.4;min-width:0;}
+ .aurel-auth-paper {margin-bottom:25px;}
+ .aurel-sync-banner {margin-inline:10px;}
+ .aurel-sync-banner .btn {width:100%;}
+ .aurel-workbench-figures dd {overflow-wrap:anywhere;}
+ .aurel-workbench-actions .btn {flex:1 1 100%;}
+ .atelier-editor .editor-head {padding:21px 19px;}
+ .atelier-editor .editor-body {padding:19px;}
+ .atelier-editor .editor-foot {padding:14px 19px;}
+}
+@media (max-width:360px) {
+ .content-wrap {padding-inline:11px;}
+ .page-actions {grid-template-columns:1fr;}
+ .breadcrumb-active {max-width:40vw;}
+ .aurel-workbench-tools label {padding-inline:10px;}
+ .aurel-access-actions {width:100%;justify-content:stretch;}
+ .aurel-access-actions button {flex:1;}
+}
+@media (prefers-reduced-motion:reduce) {
+ .sidebar,.btn,.icon-btn,.nav-item,.aurel-account-chevron {animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+}

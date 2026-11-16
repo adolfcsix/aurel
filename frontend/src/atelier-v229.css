@@ -1,0 +1,110 @@
+/* AUREL V2.29 — Maison Shell & Control Audit
+ * Final composition layer: navigation, account popover, topbar, and mobile.
+ * All real buttons inherit the V2.24 14px silhouette; Pearl stays opt-in.
+ */
+:root{
+ --maison-ink:#203b30;
+ --maison-muted:#61736a;
+ --maison-copper:#a78a60;
+ --maison-line:#e6e5dc;
+ --maison-surface:#fffefa;
+ --maison-sidebar:#19372d;
+ --maison-sidebar-muted:#c1cec5;
+ --maison-ease:cubic-bezier(.22,.76,.28,1);
+}
+/* A quieter navigation rail. Group titles are visible and the current location
+ * is indicated by a narrow rule rather than a large decorative badge. */
+.sidebar{background:var(--maison-sidebar);border-right:1px solid #355246;}
+.sidebar .brand{padding-bottom:20px;}
+.sidebar .brand-name{font-family:Georgia,'Times New Roman',serif;font-weight:500;letter-spacing:.15em;}
+.sidebar .brand-caption{font-size:10px;letter-spacing:.13em;color:#bfcec2;}
+.aurel-workspace-context{margin:8px 19px 24px;padding:17px 0 17px 13px;border:0;border-left:1px solid #a98c62;background:transparent;display:grid;gap:6px;min-width:0;}
+.aurel-workspace-context>span{color:#c7b18e;font-size:9px;letter-spacing:.12em;line-height:1.5;font-weight:650;}
+.aurel-workspace-context>strong{font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:1.22;font-weight:500;color:#fffdf3;letter-spacing:-.015em;}
+.aurel-workspace-context>small{color:#afc2b4;font-size:11px;line-height:1.55;max-width:23ch;}
+.sidebar .sidenav{padding-inline:13px;}
+.sidebar .nav-group{margin:0 0 20px;padding:0;}
+.sidebar .nav-group+.nav-group{padding-top:16px;border-top:1px solid #ffffff16;}
+.sidebar .nav-group-label{margin:0 0 10px;padding:0 14px;color:#b5c3b9;font-size:10px;font-weight:580;letter-spacing:.035em;line-height:1.5;text-transform:none;}
+.sidebar .nav-item{display:flex;position:relative;align-items:center;gap:11px;min-height:46px;margin:2px 0;padding:9px 13px;border:1px solid transparent!important;border-radius:var(--aurel-action-radius)!important;color:#dce7dd;background:transparent;box-shadow:none;font-size:12.5px;font-weight:530;line-height:1.45;text-align:left;transition:background-color 180ms var(--maison-ease),color 180ms var(--maison-ease),border-color 180ms var(--maison-ease);}
+.sidebar .nav-item svg{flex:0 0 auto;color:#b3c7b8;stroke-width:1.7;}
+.sidebar .nav-item span{flex:1;white-space:normal;overflow-wrap:anywhere;}
+.sidebar .nav-item.active{background:#ffffff13;color:#fffdf3;border-color:#ffffff18!important;box-shadow:none;}
+.sidebar .nav-item.active svg{color:#e0cfac;}
+.sidebar .nav-item.active::before{display:block;content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:2px;background:#cbb386;}
+.sidebar .nav-item:hover:not(.active){background:#ffffff0c;color:#fffefa;}
+.sidebar .nav-count{background:#36584a;color:#fffefa;border:1px solid #547765;font-size:11px;min-width:23px;text-align:center;padding:3px 6px;font-variant-numeric:tabular-nums;}
+.sidebar .side-help{color:#dce6da;font-size:11.5px;}
+.sidebar .side-help small{color:#c0d1c4;font-size:11px;}
+.sidebar .sidebar-footer{color:#a7beb0;font-size:9px;letter-spacing:.08em;line-height:1.6;}
+/* One composed, quiet header. Keep search available as an icon on mobile. */
+.topbar{background:#fffefa;border-bottom:1px solid var(--maison-line);height:72px;gap:12px;}
+.topbar-left{gap:13px;min-width:0;}
+.breadcrumb-root{color:#77887b;font-weight:540;}
+.breadcrumb-active{color:var(--maison-ink);font-weight:630;}
+.topbar .aurel-top-search{display:inline-flex;align-items:center;justify-content:flex-start;min-height:44px;min-width:44px;background:#f7f8f2;border-color:#dfe5da;color:#415849;font-size:12px;box-shadow:none;}
+.topbar .aurel-top-search:hover:not(:disabled){background:#f0f3ec;border-color:#bbc8b9;}
+.topbar .aurel-top-search svg{flex-shrink:0;}
+.topbar .aurel-top-search kbd{white-space:nowrap;}
+.top-date{font-variant-numeric:tabular-nums;}
+.topbar .mobile-toggle{min-width:44px;min-height:44px;background:#f7f8f3;color:#254b38;border:1px solid #e0e6dc;}
+/* Profile menu is intentional navigation, not a generic floating card. */
+.aurel-account-menu{z-index:42;}
+.aurel-account-trigger{min-height:48px;border-left:1px solid var(--maison-line);padding-left:14px;gap:9px;color:var(--maison-ink);}
+.aurel-account-avatar{background:#e5e9df;color:#284b39;font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:16px;border-radius:50%;}
+.aurel-account-info strong{font-weight:610;color:var(--maison-ink);font-size:12px;}
+.aurel-account-info small{color:#6a7a6f;font-size:11px;}
+.aurel-account-popover{width:min(316px,calc(100vw - 24px));padding:10px;background:#fffefa;border:1px solid #dedfd4;border-radius:16px;box-shadow:0 20px 58px #20352821;}
+.aurel-account-popover-head{padding:17px 15px 18px;gap:7px;border-color:var(--maison-line);}
+.aurel-account-popover-head span{color:#8d7654;font-size:10px;}
+.aurel-account-popover-head strong{font-family:Georgia,'Times New Roman',serif;color:#254637;font-size:21px;line-height:1.25;font-weight:500;}
+.aurel-account-popover-head small{color:#576a5e;font-size:11.5px;}
+.aurel-account-popover>button{min-height:46px;padding:10px 13px;gap:12px;text-align:left;font-weight:550;font-size:13px;line-height:1.4;border-radius:var(--aurel-action-radius)!important;color:#284c39;}
+.aurel-account-popover>button:hover{background:#f1f5ed;}
+.aurel-account-popover>button.aurel-account-signout{color:#885e50;}
+.aurel-account-popover-divider{border-color:var(--maison-line);margin:6px 4px;}
+/* One universal silhouette and clearly differentiated action semantics. */
+button{border-radius:var(--aurel-action-radius)!important;touch-action:manipulation;}
+:where(button):disabled{cursor:not-allowed;transform:none!important;}
+:is(.btn,.aurel-lease-filter,.aurel-workbench-tab,.aurel-record-action,.aurel-record-quiet,.top-search,.aurel-account-trigger){-webkit-tap-highlight-color:transparent;}
+:where(button,a,input,select,textarea,[tabindex]):focus-visible{outline:2px solid #987a4a!important;outline-offset:3px!important;}
+/* Hover changes are deliberately quiet and never applied on coarse pointers. */
+@media(hover:hover) and (pointer:fine){
+ .sidebar .nav-item:not(.active):hover{transform:none;}
+ .aurel-account-popover>button:hover{transition:background-color 170ms ease;}
+}
+@media(max-width:1250px){
+ .topbar .aurel-top-search{min-width:44px;}
+}
+@media(max-width:800px){
+ .sidebar{width:min(306px,90vw);max-width:90vw;box-shadow:16px 0 48px #0b241d40;}
+ .sidebar.mobile-open{transform:translateX(0);}
+ .mobile-scrim.show{background:#142b2585;}
+ .sidebar .nav-item{min-height:48px;}
+ .mobile-sidebar-close{min-height:44px;min-width:44px;background:#fffefa;border:1px solid #e0e4d9;color:#284f3d;}
+ .topbar{height:66px;padding-inline:14px;}
+ .topbar-left,.topbar-right{gap:8px;}
+ .topbar .aurel-top-search{display:inline-flex!important;min-width:44px;min-height:44px;padding:0 12px;justify-content:center;}
+ .topbar .aurel-top-search .aurel-top-shortcut,.topbar .aurel-top-search kbd{display:none!important;}
+ .topbar .mobile-toggle{display:inline-flex;align-items:center;justify-content:center;}
+ .aurel-account-trigger{padding-left:8px;min-height:44px;}
+ .aurel-account-avatar{width:36px;height:36px;flex-basis:36px;}
+ .aurel-account-popover{right:-2px;}
+}
+@media(max-width:380px){
+ .topbar{padding-inline:11px;}
+ .breadcrumb-active{max-width:39vw;font-size:12.5px;}
+ .aurel-account-popover{right:-2px;}
+ .topbar .aurel-top-search{display:inline-flex!important;}
+}
+@media(hover:none){
+ .sidebar .nav-item:hover:not(.active){background:transparent;}
+ .aurel-account-popover>button:hover{background:transparent;}
+}
+@media(prefers-reduced-motion:reduce){
+ .sidebar .nav-item,.aurel-account-popover>button,.topbar .aurel-top-search{transition:none!important;animation:none!important;}
+}
+/* Specific mobile table rules inherited from early versions must not shrink hit areas. */
+.content-wrap :is(.data-grid .btn,.data-grid button,.row-actions button,.text-link,.aurel-record-quiet,.aurel-record-action,.portfolio-review-button,.quality-open,.aurel-workbench-actions button,.aurel-lease-row-actions button) {min-height:44px;}
+/* A selected menu item is legible on any pointer without an aggressive glow. */
+.sidebar .nav-item:focus-visible{outline:2px solid #d2b98f!important;outline-offset:1px!important;}

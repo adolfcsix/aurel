@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {reviewUnit,needsReview,portfolioReview} from '../src/lib/portfolio-review.js';
+const complete={id:'1',code:'A1',projectId:'P',building:'A',owner:'Ms A',managerId:'S',status:'vacant'};
+test('V1.2: unit with essential searchable fields is complete regardless of optional price or address',()=>{assert.equal(reviewUnit(complete).complete,true);assert.equal(needsReview(complete),false)});
+test('V1.2: draft can stay incomplete without being rejected',()=>{const report=reviewUnit({status:'draft',code:'',projectId:''});assert.equal(report.complete,false);assert.ok(report.labels.includes('Mã căn'));assert.ok(report.labels.includes('Dự án'))});
+test('V1.2: occupied unit without rent is only flagged, never rejected',()=>{const status=reviewUnit({...complete,status:'occupied',rent:null});assert.deepEqual(status.labels,['Giá thuê tham khảo'])});
+test('V1.2: no incomplete count if a linked owner exists without owner display text',()=>{assert.equal(reviewUnit({...complete,owner:'',ownerId:'O'}).complete,true)});
+test('V1.2: summary counts ready versus need review with grouped reasons',()=>{const summary=portfolioReview([complete,{code:'',projectId:'',status:'draft'}]);assert.equal(summary.total,2);assert.equal(summary.ready,1);assert.equal(summary.needs,1);assert.ok(summary.topReasons.some(x=>x.name==='Mã căn'&&x.count===1))});
+test('V1.2: empty portfolio remains valid',()=>{assert.deepEqual(portfolioReview([]),{total:0,ready:0,needs:0,topReasons:[]})});

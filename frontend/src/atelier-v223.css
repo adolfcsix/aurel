@@ -1,0 +1,83 @@
+/* AUREL V2.23 — Liquid Pearl, an opt-in tactile finish for navigation only.
+ * No backdrop-filter, no autoplay animation, no ripple JS; safe for mobile GPUs.
+ * Financial/irreversible controls MUST NOT opt into this finish. */
+:root {
+ --aurel-pearl-duration:220ms;
+ --aurel-pearl-easing:cubic-bezier(.2,.75,.2,1);
+ --aurel-pearl-ring:#b49b70;
+}
+/* Untagged buttons preserve all earlier styling, semantics, and hit targets. */
+.aurel-pearl-control:not(:disabled){
+ position:relative;isolation:isolate;overflow:hidden;
+ border-radius:var(--aurel-action-radius,14px);
+ transition:background-color var(--aurel-pearl-duration) var(--aurel-pearl-easing),
+   box-shadow var(--aurel-pearl-duration) var(--aurel-pearl-easing),
+   transform var(--aurel-pearl-duration) var(--aurel-pearl-easing),
+   border-color var(--aurel-pearl-duration) var(--aurel-pearl-easing);
+}
+/* Preserve geometry and reduce the sheen to a single restrained light line. */
+.aurel-pearl-control:not(:disabled)::before,
+.aurel-pearl-control:not(:disabled)::after {
+ content:"";position:absolute;pointer-events:none;border-radius:inherit;
+ transition:opacity var(--aurel-pearl-duration) ease;
+}
+.aurel-pearl-control:not(:disabled)::before{
+ inset:1px 1px 48% 1px;z-index:0;
+ background:linear-gradient(180deg,rgba(255,255,255,.21),rgba(255,255,255,.06) 38%,transparent);
+ opacity:.85;
+}
+.aurel-pearl-control:not(:disabled)::after{
+ inset:auto 9% 2px 9%;height:1px;z-index:0;
+ background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+ opacity:.45;
+}
+.aurel-pearl-control>svg,.aurel-pearl-control>span,.aurel-pearl-control>kbd{
+ position:relative;z-index:1;
+}
+.btn.primary.aurel-pearl-control:not(:disabled),
+.atelier-button-dark.aurel-pearl-control:not(:disabled){
+ color:#f8f9f4;
+ border:1px solid #496b5d;
+ background-color:#264c41;
+ background-image:linear-gradient(145deg,#365f51 0%,#24483e 58%,#1e3e35 100%);
+ box-shadow:inset 0 1px rgba(255,255,255,.21),
+   inset 0 -1px rgba(9,36,26,.27),0 4px 12px rgba(24,53,40,.12);
+}
+.btn.outline.aurel-pearl-control:not(:disabled),
+.btn.secondary.aurel-pearl-control:not(:disabled),
+.top-search.aurel-top-search.aurel-pearl-control:not(:disabled){
+ color:#2e5142;
+ border:1px solid #c5d2c6;
+ background-color:#f5f7f0;
+ background-image:linear-gradient(145deg,#fffefa 0%,#f0f4ea 54%,#e8efe4 100%);
+ box-shadow:inset 0 1px rgba(255,255,255,.95),
+   inset 0 -1px rgba(80,106,84,.08),0 4px 10px rgba(30,58,39,.055);
+}
+.aurel-pearl-control:where(:not(:disabled)):hover{
+ transform:translateY(-1px);
+ box-shadow:inset 0 1px rgba(255,255,255,.28),0 7px 18px rgba(34,65,49,.15);
+}
+.aurel-pearl-control:where(:not(:disabled)):hover::before{opacity:1}
+.aurel-pearl-control:where(:not(:disabled)):active{
+ transform:translateY(0);transition-duration:100ms;
+ box-shadow:inset 0 2px 7px rgba(10,32,23,.13),0 2px 6px rgba(34,65,49,.09);
+}
+.aurel-pearl-control:focus-visible{
+ outline:2px solid var(--aurel-pearl-ring)!important;
+ outline-offset:3px!important;
+}
+.aurel-pearl-control:disabled,.aurel-pearl-control[aria-busy="true"]{
+ border-radius:var(--aurel-action-radius,14px);box-shadow:none;transform:none;
+}
+.aurel-pearl-control:not(:disabled) svg{flex-shrink:0}
+/* Topbar has limited horizontal room; avoid a wide, rounded search chip at 320px. */
+.topbar .aurel-top-search.aurel-pearl-control{min-height:44px}
+@media(hover:none){
+ .aurel-pearl-control:not(:disabled):hover{transform:none}
+ .aurel-pearl-control:not(:disabled)::before{opacity:.6}
+}
+@media(prefers-reduced-motion:reduce){
+ .aurel-pearl-control,.aurel-pearl-control::before,.aurel-pearl-control::after{
+  transition:none!important;animation:none!important;transform:none!important;
+ }
+}

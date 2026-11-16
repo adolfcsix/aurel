@@ -1,0 +1,8 @@
+node_modules/
+frontend/dist/
+backend/data/*.json
+.env
+*.log
+.DS_Store
+backend/data/payment-attachments/
+qa-evidence/

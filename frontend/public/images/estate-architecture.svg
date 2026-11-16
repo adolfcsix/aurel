@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 880" role="img" aria-label="Minh họa kiến trúc căn hộ cao tầng">
+ <defs>
+  <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#e7e5df"/><stop offset="1" stop-color="#c9c6bb"/></linearGradient>
+  <linearGradient id="face" x2=".8" y2="1"><stop stop-color="#f7f5ee"/><stop offset=".6" stop-color="#d5d3ca"/><stop offset="1" stop-color="#b2b1a9"/></linearGradient>
+  <linearGradient id="face2" x2="1" y2="0"><stop stop-color="#848c8c"/><stop offset="1" stop-color="#596364"/></linearGradient>
+  <pattern id="windows" width="78" height="82" patternUnits="userSpaceOnUse"><rect x="12" y="10" width="52" height="55" fill="#424e52"/><path d="M38 10v55M12 44h52" stroke="#b3b9b3" stroke-width="4"/><rect x="13" y="11" width="23" height="30" fill="#82908e" opacity=".55"/></pattern>
+  <pattern id="lines" width="28" height="61" patternUnits="userSpaceOnUse"><path d="M0 0h28" stroke="#8e968f" stroke-width="2"/></pattern>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".4" numOctaves="3" seed="15"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".07"/></feComponentTransfer></filter>
+ </defs>
+ <rect width="740" height="880" fill="url(#sky)"/>
+ <path d="M0 790 740 716V880H0" fill="#c5c0b5"/>
+ <path d="M-30 170 226 115 286 155V800L-30 852Z" fill="#c4c3bb"/>
+ <path d="M30 205 235 167V813L30 849Z" fill="#e3e2da"/>
+ <path d="M50 205 205 175V804L50 837Z" fill="url(#windows)" opacity=".65"/>
+ <path d="M195 205 336 166 336 790 195 822Z" fill="#697475"/>
+ <path d="M330 95 650 22 704 72V750L330 815Z" fill="#e9e8e0"/>
+ <path d="M344 103 655 34V759L344 810Z" fill="url(#face)"/>
+ <path d="M367 131 630 74V722L367 779Z" fill="url(#windows)"/>
+ <path d="M344 190 655 122M344 301 655 234M344 411 655 344M344 521 655 455M344 631 655 565M344 742 655 675" stroke="#f3f2ed" stroke-width="20"/>
+ <path d="M343 109 380 110V800l-37 7ZM622 43l33-8v730l-33 4Z" fill="#f7f5ee" opacity=".8"/>
+ <path d="M655 34 706 69V749L655 765Z" fill="url(#face2)"/>
+ <path d="M656 122 705 142M656 234 705 255M656 344 705 366M656 454 705 476M656 565 705 586M656 675 705 697" stroke="#d3d4cc" stroke-width="12"/>
+ <path d="M0 845 740 720" stroke="#9b9b90" stroke-width="3"/>
+ <rect width="740" height="880" filter="url(#grain)" opacity=".45"/>
+</svg>

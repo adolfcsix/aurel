@@ -1,0 +1,118 @@
+/* AUREL V2.24 — Unified Button Language.
+ * Exactly one soft-rectangle silhouette for actionable controls. Liquid Pearl
+ * remains an optical finish only. Tab strips, cards, and links retain distinct
+ * information architecture while using the same corner geometry.
+ * Loaded last to consolidate legacy styles without changing business behavior.
+ */
+:root {
+  --aurel-action-radius: 14px;
+  --aurel-action-radius-inner: 10px;
+  --aurel-action-hit: 44px;
+  --aurel-action-hit-prominent: 48px;
+  --aurel-action-type: 13px;
+  --aurel-action-ink: #293e32;
+  --aurel-action-line: #cfd6cb;
+  --aurel-action-focus: #937851;
+  --aurel-action-ease: cubic-bezier(.22,.76,.28,1);
+  --aurel-action-duration: 180ms;
+}
+/* A common silhouette for ALL real button elements, even legacy inline actions.
+ * This is the only !important radius declaration: earlier styles scattered
+ * rectangles (3px), pills (999px), and 7/8px curves across dozens of files. */
+button { border-radius: var(--aurel-action-radius) !important; touch-action: manipulation; }
+/* Ordinary actions: no hidden tiny target inside tables, drawers, or cards. */
+:is(.btn,.icon-btn,.top-search,.aurel-access-create,.aurel-access-actions button,
+  .aurel-auth-submit,.aurel-auth-textbutton,.aurel-auth-reveal,
+  .aurel-record-action,.aurel-record-quiet,.aurel-find-close,.aurel-find-clear,
+  .aurel-workbench-actions button,.aurel-lease-row-actions button,
+  .aurel-queue-button,.atelier-queue-button,.portfolio-review-button,
+  .quality-open,.text-link,.v09-dossier-exit,.aurel-account-popover>button,
+  .aurel-decision-top button,.toast-v2 button,.row-actions button,
+  .staff-tool button,.spatial-actions button,.aurel-workbench-more button,
+  .aurel-journey-next>button,.aurel-find-header button) {
+  min-height:var(--aurel-action-hit);
+  font-family:var(--aurel-body-font, 'Segoe UI', sans-serif);
+  line-height:1.4;
+  font-weight:600;
+  letter-spacing:0;
+}
+/* Shared treatment; visual depth is determined by semantic role, never by shape. */
+.btn { min-height:var(--aurel-action-hit); padding-inline:17px; font-size:var(--aurel-action-type);
+  font-weight:620; gap:9px; transition:background-color var(--aurel-action-duration) var(--aurel-action-ease),
+  border-color var(--aurel-action-duration) var(--aurel-action-ease),
+  color var(--aurel-action-duration) var(--aurel-action-ease),
+  box-shadow var(--aurel-action-duration) var(--aurel-action-ease),
+  transform var(--aurel-action-duration) var(--aurel-action-ease); }
+.btn.primary:not(.aurel-pearl-control) {background:#28483a;color:#fffefa;border:1px solid #28483a;
+  box-shadow:inset 0 1px rgba(255,255,255,.12);}
+.btn.primary:not(.aurel-pearl-control):hover:not(:disabled){background:#203d31;border-color:#203d31;}
+.btn:is(.secondary,.outline):not(.aurel-pearl-control) {background:#fffefa;border:1px solid var(--aurel-action-line);color:var(--aurel-action-ink);}
+.btn:is(.secondary,.outline):not(.aurel-pearl-control):hover:not(:disabled) {background:#f3f5ef;border-color:#aab9a9;}
+.btn:is(.danger,.dangerGhost) { box-shadow:none; }
+.btn:disabled,.btn[aria-busy="true"] {transform:none!important;box-shadow:none;cursor:not-allowed;}
+/* Pearl is an understated surface sheen (never a giant bubble). The common radius
+ * applies even when disabled. Do not move, bounce, or animate financial buttons. */
+.aurel-pearl-control,.aurel-pearl-control:not(:disabled),.aurel-pearl-control:disabled {
+  border-radius:var(--aurel-action-radius)!important;
+}
+.aurel-pearl-control:not(:disabled)::before {border-radius:calc(var(--aurel-action-radius) - 1px);opacity:.54;}
+.aurel-pearl-control:not(:disabled)::after {opacity:.26;}
+.aurel-pearl-control:where(:not(:disabled)):hover {transform:translateY(-1px);}
+.aurel-pearl-control:where(:not(:disabled)):active {transform:none;}
+/* Auth, search, and workspace CTA are one family, not competing components. */
+.aurel-auth-submit,.aurel-access-create,.portfolio-review-button,.atelier-button-dark,
+.aurel-record-action {min-height:var(--aurel-action-hit-prominent);font-size:13px;
+  letter-spacing:0;font-weight:630;}
+.aurel-auth-submit:disabled {transform:none;box-shadow:none;}
+.aurel-auth-reveal,.aurel-auth-textbutton,.aurel-find-clear,.aurel-find-close,
+.aurel-account-popover>button,.aurel-access-actions button,.aurel-record-quiet,
+.aurel-record-action,.portfolio-review-button,.quality-open,.text-link,
+.aurel-access-create,.aurel-account-trigger,.v09-dossier-exit {
+  transition:background-color var(--aurel-action-duration) ease,
+    border-color var(--aurel-action-duration) ease,color var(--aurel-action-duration) ease;
+}
+/* Icon-only controls must have the same usable target as labelled buttons. */
+:is(.icon-btn,.mobile-toggle,.mobile-sidebar-close,.aurel-find-close,
+  .aurel-decision-top button,.toast-v2 button,.row-actions button,
+  .staff-tool button,.spatial-actions button) {min-width:44px;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+/* Sections selected in-place are a coherent segmented control, not mismatched buttons. */
+.aurel-auth-switch,.quality-filter,.import-mode,.import-tabs {
+  border-radius:var(--aurel-action-radius);}
+.aurel-auth-switch {border:1px solid #dce0d7;background:#f4f4ee;
+  padding:4px;gap:4px;}
+.aurel-auth-switch button {border:1px solid transparent;border-bottom:1px solid transparent;
+  min-height:44px;padding:10px 12px;font-weight:620;}
+.aurel-auth-switch button.active {background:#fffefa;border-color:#d8dcd2;
+  box-shadow:0 2px 6px rgba(31,54,38,.05);}
+.quality-filter {border-radius:var(--aurel-action-radius);padding:3px;gap:3px;overflow:visible;}
+.quality-filter button {border:0;min-height:44px;}
+.quality-filter button.selected {background:#e6f0e8;}
+.aurel-workbench-tabs,.aurel-lease-filters {gap:5px;padding:5px;}
+.aurel-workbench-tab,.aurel-lease-filter {min-height:48px;border:1px solid transparent;
+  transition:background-color var(--aurel-action-duration) ease,border-color var(--aurel-action-duration) ease;}
+.aurel-workbench-tab:is(.is-active,:hover),.aurel-lease-filter:is(.is-active,:hover) {
+  border-color:#ccd7c9;}
+.v09-dossier-tabs button {min-height:44px;}
+/* Entire cards and rows are large hit areas, not primary buttons. They use the
+ * same corner radius but keep their information-first styling. */
+.portfolio-project,.atelier-task,.aurel-find-option {min-height:44px;}
+/* One focus grammar: no removal of the native focus affordance. */
+button:focus-visible {outline:2px solid var(--aurel-action-focus)!important;outline-offset:3px!important;}
+button:disabled {opacity:.57;cursor:not-allowed;}
+/* Make a disabled destructive control unmistakable, without a seductive sheen. */
+.btn:is(.danger,.dangerGhost):disabled {opacity:.54;}
+@media(hover:none) {
+  .btn:hover,.aurel-pearl-control:hover {transform:none!important;}
+}
+@media(max-width:650px) {
+  .page-actions .btn,.editor-foot .btn,.aurel-workbench-actions .btn,
+  .aurel-lease-row-actions .btn,.aurel-record-footer button {min-height:46px;font-size:12.5px;}
+  .aurel-workbench-tabs,.aurel-lease-filters {padding:5px;gap:4px;}
+  .aurel-auth-switch button {padding-inline:8px;}
+  .aurel-access-actions button {min-height:44px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  button,button::before,button::after {transition:none!important;animation:none!important;scroll-behavior:auto!important;}
+  .aurel-pearl-control:hover,.btn:hover {transform:none!important;}
+}

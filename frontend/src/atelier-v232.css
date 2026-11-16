@@ -1,0 +1,77 @@
+/* AUREL V2.32 — Maison Surface Harmony
+ * One semantic palette for the shell, dossier and editor. This refinement is
+ * deliberately last in the cascade and does not change destructive controls,
+ * warnings, access rules or financial states. The 14px action shape is fixed.
+ * To avoid a new cascade of magic hex values, all surface colors below refer
+ * to the existing V2.31 tonal system.
+ */
+:root {
+  --maison-surface-page: var(--maison-31-canvas-wash);
+  --maison-surface-sheet: var(--maison-31-sheet-wash);
+  --maison-surface-header: var(--maison-31-header-wash);
+  --maison-surface-pure: var(--maison-31-paper);
+  --maison-surface-soft: var(--maison-31-mist);
+  --maison-surface-quiet: var(--maison-31-pearl);
+  --maison-text-main: var(--maison-31-ink);
+  --maison-text-supporting: var(--maison-31-secondary);
+  --maison-rule-hairline: var(--maison-31-line);
+  --maison-focus-ring: var(--maison-31-accent);
+  --maison-transition-quiet: 180ms var(--maison-31-ease);
+}
+/* Chroma transitions are confined to broad surfaces, not labels or money. */
+body,.main-area {background:var(--maison-surface-page);color:var(--maison-text-main);}
+.topbar,.aurel-account-popover,.atelier-editor .editor-head,.atelier-editor .editor-foot,
+.aurel-dossier-top,.aurel-dossier-bottom {background:var(--maison-surface-header);}
+.content-wrap :is(.panel,.pad-panel,.atelier-projects,.atelier-priority,.table-frame,.atelier-ledger,.aurel-workbench,.aurel-lease-desk) {
+  background:var(--maison-surface-sheet);
+  border-color:var(--maison-rule-hairline);
+}
+/* Floating sheets remain visually connected to the workspace. Keep input
+   backplates opaque so form values stay crisp over the subtle wash. */
+.editor.atelier-editor,.aurel-dossier-sheet {background:var(--maison-surface-quiet);}
+.atelier-editor .editor-body,.aurel-dossier-scroll {background:var(--maison-surface-sheet);}
+.atelier-editor :is(input.field-input,select.field-input,textarea.field-input),
+.aurel-decision-field input {background:var(--maison-surface-pure);color:var(--maison-text-main);}
+/* Keep all interactive controls inside the same quiet 14px silhouette.
+   Do not change finance/destructive action finishes or disabled semantics. */
+
+.content-wrap .btn:is(:disabled,[aria-busy="true"]) {
+  transform:none!important;box-shadow:none!important;
+  cursor:not-allowed;opacity:.56;
+}
+.content-wrap .btn:is(:disabled,[aria-busy="true"])::before,
+.content-wrap .btn:is(:disabled,[aria-busy="true"])::after {opacity:0!important;animation:none!important;}
+/* Entries in tables, dropdowns and record lists share the same relaxed rhythm.
+   The data itself is never blurred, translucent, or animated. */
+.content-wrap :is(.data-grid td,.data-grid th,.aurel-dossier-detail,.aurel-dossier-record) {border-color:var(--maison-rule-hairline);}
+.content-wrap .data-grid th {color:var(--maison-text-supporting);}
+.content-wrap :is(.page-subtitle,.aurel-dossier-detail>span,.aurel-dossier-record p) {color:var(--maison-text-supporting);}
+/* Focus ring is a functional indicator, not a gleam. */
+:where(button,a,input,select,textarea,[tabindex]):focus-visible {outline:2px solid var(--maison-focus-ring)!important;outline-offset:3px!important;}
+/* Prevent color-transition paint effects from suppressing focus and semantics
+   for people requesting stronger contrast or flatter surfaces. */
+@media (prefers-contrast:more) {
+  body,.main-area,.content-wrap :is(.panel,.table-frame,.aurel-workbench),
+  .aurel-dossier-scroll,.atelier-editor .editor-body {background:var(--maison-surface-pure);}
+  .sidebar {background:var(--maison-31-forest);}
+  .topbar,.aurel-dossier-top,.aurel-dossier-bottom,.atelier-editor .editor-head,.atelier-editor .editor-foot {background:var(--maison-surface-pure);}
+  .content-wrap .btn:not(:disabled),.atelier-editor .field-input {border-width:2px;}
+}
+@media (forced-colors:active) {
+  body,.main-area,.sidebar,.topbar,.content-wrap .panel,.aurel-dossier-scroll,.atelier-editor .editor-body {background:Canvas;color:CanvasText;}
+  .content-wrap .btn,.aurel-dossier-sheet button,.atelier-editor .field-input {forced-color-adjust:auto;}
+  :where(button,a,input,select,textarea,[tabindex]):focus-visible {outline:2px solid Highlight!important;}
+}
+@media (max-width:700px) {
+  /* On narrow viewports color should create continuity, not stack extra tiles. */
+  .aurel-dossier-scroll,.atelier-editor .editor-body {background:var(--maison-surface-quiet);}
+  .content-wrap :is(.btn,.aurel-record-action,.aurel-record-quiet) {min-height:44px;}
+}
+@media (hover:none) {
+  .content-wrap .btn:hover:not(:disabled) {transform:none!important;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .content-wrap :is(.btn,.aurel-record-action,.aurel-record-quiet),
+  .aurel-dossier-sheet button,.sidebar .nav-item {transition:none!important;animation:none!important;}
+  .aurel-dossier-scroll,.atelier-editor .editor-body {scroll-behavior:auto!important;}
+}

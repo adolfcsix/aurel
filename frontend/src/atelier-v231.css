@@ -1,0 +1,96 @@
+/* AUREL V2.31 — Maison Tonal Weave
+   A restrained, static blend of parchment, sage, pearl and champagne.
+   Operational text, statuses and financial decisions remain high-contrast.
+   Loaded after V2.30. No JS, blur, continuously running animation or external assets. */
+:root {
+  --maison-31-canvas: #f6f6f0;
+  --maison-31-paper: #fffefa;
+  --maison-31-pearl: #f9faf6;
+  --maison-31-sage: #e4ebe2;
+  --maison-31-mist: #edf1ec;
+  --maison-31-champagne: #eee5d6;
+  --maison-31-forest: #244739;
+  --maison-31-ink: #263e32;
+  --maison-31-secondary: #52695b;
+  --maison-31-accent: #856a48;
+  --maison-31-line: #dde4d9;
+  --maison-31-ease: cubic-bezier(.22,.76,.28,1);
+  --maison-31-canvas-wash: radial-gradient(ellipse 62% 58% at 83% 7%,rgba(212,226,214,.42),transparent 78%),radial-gradient(ellipse 45% 54% at 5% 95%,rgba(234,220,193,.26),transparent 80%),linear-gradient(117deg,#faf9f5 0%,#f5f7f2 50%,#f8f5ee 100%);
+  --maison-31-sheet-wash: linear-gradient(127deg,#fffefa 0%,#fbfcf8 57%,#f5f8f2 100%);
+  --maison-31-header-wash: linear-gradient(108deg,#fffefa 0%,#fafbf7 60%,#f4f7f1 100%);
+  --maison-31-pine-wash: linear-gradient(160deg,#18352b 0%,#214638 58%,#1a372d 100%);
+}
+html {background:var(--maison-31-canvas);}
+body {color:var(--maison-31-ink);background:var(--maison-31-canvas-wash);}
+.main-area {background:var(--maison-31-canvas-wash);}
+.content-wrap {color:var(--maison-31-ink);}
+/* The same muted hue flows across the navigation and chrome, without glow. */
+.sidebar {background:var(--maison-31-pine-wash);border-right-color:#355648;}
+.sidebar .brand {border-bottom-color:rgba(224,232,219,.15);}
+.sidebar .nav-group+.nav-group {border-top-color:rgba(228,235,224,.13);}
+.sidebar .nav-item.active {background:linear-gradient(107deg,rgba(235,241,229,.17),rgba(214,226,210,.08));border-color:rgba(222,232,217,.16)!important;color:#fffdf5;}
+.sidebar .nav-item.active::before {background:#d7c69e;}
+.sidebar .aurel-workspace-context {border-left-color:#c2ac86;}
+.sidebar .nav-count {background:#355e4b;border-color:#63836e;color:#fffdf5;}
+.topbar {background:var(--maison-31-header-wash);border-bottom-color:var(--maison-31-line);}
+.topbar :is(.aurel-top-search,.mobile-toggle) {background:linear-gradient(125deg,#fbfcf8,#eff4ed);border-color:#d9e2d7;color:#2b503d;}
+.aurel-account-avatar {background:linear-gradient(138deg,#f0ede3,#dce8da);color:#264a38;}
+.aurel-account-popover {background:var(--maison-31-sheet-wash);border-color:var(--maison-31-line);}
+.aurel-account-popover>button:hover {background:#ecf3eb;}
+/* Flowing color belongs to surfaces, never to numbers or meaning-bearing badges. */
+.content-wrap :is(.panel,.pad-panel,.atelier-projects,.atelier-priority,.table-frame,.atelier-ledger,.aurel-workbench,.aurel-lease-desk) {
+  background:var(--maison-31-sheet-wash);border-color:var(--maison-31-line);box-shadow:0 12px 34px rgba(27,52,40,.028);
+}
+.content-wrap :is(.data-grid th,.table-frame thead) {background:#f0f4ee;color:#385344;}
+.content-wrap :is(.data-grid td,.data-grid th) {border-color:#e1e7dd;}
+.content-wrap :is(.data-grid tbody tr:hover,.atelier-project-row:hover,.atelier-task:hover) {background:rgba(224,235,222,.36);}
+.page-header h1,.atelier-ledger-heading h2,.atelier-section-heading h2 {color:#244539;}
+.page-header .page-subtitle,.page-subtitle {color:var(--maison-31-secondary);}
+.overline,.eyebrow,.atelier-titleline {color:var(--maison-31-accent);}
+/* Hero composition: a whisper of tonal transitions, never a glossy tile. */
+.atelier-hero {background:var(--maison-31-sheet-wash);border-color:var(--maison-31-line);}
+.atelier-hero-main {background:radial-gradient(ellipse 62% 82% at 96% 14%,rgba(212,227,210,.37),transparent 86%),linear-gradient(125deg,#fffefa,#f7f8f2 71%,#f4f4e9);}
+.atelier-facts {background:linear-gradient(112deg,#f9faf5,#eef4ec 55%,#f9f6ef);border-color:var(--maison-31-line);}
+.atelier-fact,.atelier-fact-primary {background:transparent;border-color:#dce5da;}
+.atelier-ledger,.aurel-workbench-body,.aurel-lease-desk-body {background:var(--maison-31-sheet-wash);}
+.atelier-project-row:hover,.atelier-task:hover {background:#eef4eb;}
+/* A shared satin finish; form action semantics, warnings, and destructive buttons retain their own clear colors. */
+.content-wrap :is(.btn:not(.primary):not(.danger):not(.dangerGhost),.aurel-record-quiet,.aurel-dossier-record-end .btn:not(.primary)) {
+  background:linear-gradient(120deg,#fffefa,#f0f5ee);border-color:#d5e0d3;color:#2a503e;
+}
+.content-wrap :is(.btn:not(.primary):not(.danger):not(.dangerGhost),.aurel-record-quiet):hover:not(:disabled) {
+  background:linear-gradient(120deg,#fffefa,#e8f0e6);border-color:#b8cbb9;
+}
+.content-wrap .btn.primary:not(:disabled) {background:linear-gradient(132deg,#294f3f,#224336);border-color:#24483a;color:#fffdf7;}
+.content-wrap .btn.primary:hover:not(:disabled) {background:linear-gradient(132deg,#315846,#264c3d);}
+/* Respect opt-in Liquid Pearl. Same 14px shape; no new shine or movement. */
+.content-wrap .aurel-pearl-control:not(:disabled)::before {opacity:.36;}
+.content-wrap .aurel-pearl-control:not(:disabled)::after {opacity:.12;}
+/* Readable form fields, distinct from decorative background washes. */
+.editor.atelier-editor {background:#f8f9f4;border-color:#dbe4d8;}
+.atelier-editor .editor-head {background:var(--maison-31-header-wash);border-bottom-color:var(--maison-31-line);}
+.atelier-editor .editor-body {background:linear-gradient(160deg,#fbfbf7 0%,#f6f8f2 66%,#faf7f0 100%);}
+.atelier-editor .editor-foot {background:var(--maison-31-header-wash);border-top-color:var(--maison-31-line);}
+.atelier-editor .field-input {background:#fffefa;color:#243e31;border-color:#c9d7c9;}
+.atelier-editor .field-input:hover:not(:disabled) {border-color:#9eb9a4;}
+.atelier-editor .field-input:focus-visible {border-color:#856a48;outline:2px solid #856a48!important;outline-offset:2px!important;}
+.atelier-form-intro {background:linear-gradient(110deg,#f1f2e9,#eaf2e9 76%,#f4efe5);border-left-color:#a88b64;color:#405c49;}
+.atelier-form-toc button[aria-current="location"] {background:linear-gradient(105deg,#e7eee5,#f1f2e9);color:#214735;}
+.atelier-section-index {background:linear-gradient(130deg,#f4efe4,#edf2e9);border-color:#dddccf;}
+.atelier-fee-estimate {background:#eef4ed;border-color:#d9e2d8;}
+.atelier-editor .editor-foot .btn.primary {background:#274a3b;border-color:#274a3b;color:#fffefa;}
+/* Dossiers are quiet printed pages, with a barely perceptible ivory/sage wash. */
+.aurel-dossier-sheet {background:#fbfcf7;border-color:#dee5da;}
+.aurel-dossier-top,.aurel-dossier-bottom {background:var(--maison-31-header-wash);border-color:var(--maison-31-line);}
+.aurel-dossier-hero {background:radial-gradient(ellipse 60% 90% at 92% 4%,rgba(220,230,215,.32),transparent 92%),linear-gradient(110deg,#fffefa,#f7f8f2)!important;}
+.aurel-dossier-scroll {background:linear-gradient(170deg,#fbfcf7 0%,#f7f9f4 61%,#fcfaf5 100%);}
+.aurel-dossier-kpis,.aurel-dossier-block,.aurel-dossier-contents {border-color:#dfe6dc!important;}
+.aurel-dossier-detail,.aurel-dossier-record {border-bottom-color:#e0e8de!important;}
+.aurel-dossier-record:hover {background:rgba(226,237,222,.3);}
+.aurel-dossier-empty {background:#eff3ec;color:#4b6252;}
+/* Visual state and accessibility may not depend on hue alone. */
+:where(button,a,input,select,textarea,[tabindex]):focus-visible {outline:2px solid #856a48!important;outline-offset:3px!important;}
+@media (hover:none) {  }
+@media (prefers-reduced-motion:reduce) {
+  .sidebar .nav-item,.content-wrap .btn,.atelier-editor .field-input {transition:none!important;animation:none!important;}
+}

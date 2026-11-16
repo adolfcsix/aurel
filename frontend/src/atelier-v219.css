@@ -1,0 +1,135 @@
+/* AUREL 2.19 — Atelier Precision.
+   A restrained operational design system, designed for Vietnamese business copy.
+   No remote fonts, third-party icons or ornamental motion dependencies. */
+:root {
+  --aurel-paper: #fffefa;
+  --aurel-canvas: #f6f4ef;
+  --aurel-ink: #252e27;
+  --aurel-pine: #283f31;
+  --aurel-pine-deep: #1d3328;
+  --aurel-brass: #866b49;
+  --aurel-mute: #56655a;
+  --aurel-hairline: #dcdcd1;
+  --aurel-focus: #8d714b;
+  --aurel-danger: #8a4f45;
+  --aurel-font: "Be Vietnam Pro", Inter, "Noto Sans", "Segoe UI", Arial, sans-serif;
+  --aurel-serif: "EB Garamond", "Iowan Old Style", Georgia, serif;
+  --aurel-control-height: 44px;
+}
+body, button, select, textarea, input {font-family:var(--aurel-font);}
+body {color:var(--aurel-ink);background:var(--aurel-canvas);text-rendering:optimizeLegibility;}
+button,select,input,textarea{font-variant-numeric:tabular-nums;}
+button {touch-action:manipulation;}
+.btn,.icon-btn,.nav-item,.aurel-account-popover>button,.aurel-access-actions button,
+.aurel-access-create,.aurel-lease-filter,.aurel-workbench-tab,.aurel-workbench-actions button,
+.aurel-lease-row-actions button,.aurel-journey-next>button,.aurel-account-trigger,
+.aurel-auth-submit,.aurel-top-search,.mobile-toggle,.mobile-sidebar-close {
+  min-height:var(--aurel-control-height);
+  transition:background-color .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease;
+}
+.btn {border-radius:7px;letter-spacing:.005em;line-height:1.35;padding-inline:17px;font-size:12.5px;
+  font-weight:640;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;}
+.btn.primary{background:var(--aurel-pine);border:1px solid var(--aurel-pine);color:#fffefa;box-shadow:none;}
+.btn.primary:hover:not(:disabled){background:var(--aurel-pine-deep);border-color:var(--aurel-pine-deep)}
+.btn.secondary,.btn.outline {border:1px solid #d0d4ca;background:#fffefa;color:#314a39;}
+.btn.secondary:hover:not(:disabled),.btn.outline:hover:not(:disabled){background:#f1f2eb;border-color:#a9b2a6;}
+.btn.danger {background:var(--aurel-danger);color:#fff;border:1px solid var(--aurel-danger)}
+.btn.danger:hover:not(:disabled){background:#753c34;border-color:#753c34;color:#fff}
+.btn.dangerGhost{border-color:#d9c5bc;color:#84483f;background:#fffaf7}
+.btn.dangerGhost:hover:not(:disabled){background:#f8ece7;color:#72382f}
+.btn:disabled,.aurel-auth-submit:disabled,.aurel-access-actions button:disabled{opacity:.56;cursor:not-allowed;box-shadow:none;transform:none;}
+.btn.is-busy{cursor:progress;}
+/* Match focus visibility to quiet colors without relying on low-contrast shadows. */
+:where(button,a,input,textarea,select,[tabindex]):focus-visible{outline:2px solid var(--aurel-focus)!important;outline-offset:3px!important;}
+:where(.aurel-workbench-tab,.aurel-lease-filter):focus-visible{outline-offset:-4px!important;}
+/* Body copy should be legible; display serif is reserved for figures and editorial accents. */
+.content-wrap :is(p,small,dt,.v09-task-body small,.aurel-lease-row-dates small),
+.aurel-workbench p,.aurel-lease-desk p{line-height:1.65;}
+.content-wrap :is(.aurel-workbench-item h4,.aurel-lease-row-primary strong){letter-spacing:-.012em;}
+.aurel-workbench-header h3,.aurel-lease-desk-head h3 {font-weight:620;letter-spacing:-.035em;}
+.aurel-workbench-header p,.aurel-lease-desk-head p {font-size:12.5px;max-width:67ch;color:#596a5d;}
+.aurel-workbench-kicker{color:var(--aurel-brass);font-size:10px;letter-spacing:.1em;font-weight:750;}
+.aurel-workbench-seal{color:#425b48;font-size:11px;}
+.aurel-workbench-tab,.aurel-lease-filter{font-size:12px;line-height:1.45;}
+.aurel-workbench-tab strong,.aurel-lease-filter b{font-size:12px;}
+.aurel-workbench-stage-note,.aurel-workbench-item-top p,.aurel-lease-row-primary span,
+.aurel-lease-row-dates small,.aurel-workbench-date{font-size:11.5px;color:#566b5a;}
+.aurel-workbench-figures dt,.aurel-lease-desk-section-title small{font-size:11.5px;color:#5e6c5f;}
+.aurel-workbench-figures dd{font-size:14px;color:var(--aurel-pine-deep);}
+.aurel-workbench-item{border-radius:9px;}
+.aurel-workbench-item h4{font-size:19px;}
+.aurel-workbench-actions,.aurel-lease-row-actions{gap:8px;}
+.aurel-workbench-actions .btn,.aurel-lease-row-actions .btn{min-height:var(--aurel-control-height);font-size:12px;}
+.aurel-workbench-restricted{font-size:11.5px;}
+/* A local, permission-bound search. The API already restricts the source collection. */
+.aurel-workbench-tools{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  flex-wrap:wrap;margin:0 0 20px;}
+.aurel-workbench-tools label{min-width:min(100%,320px);max-width:550px;min-height:46px;flex:1;
+  display:flex;align-items:center;gap:10px;padding:0 14px;border-radius:8px;
+  background:#fff;border:1px solid #d4d7cd;color:#58705e;}
+.aurel-workbench-tools label:focus-within{border-color:#a28a66;box-shadow:0 0 0 3px #a28a661c;}
+.aurel-workbench-tools input{min-width:0;width:100%;height:44px;border:none;outline:none!important;
+  font-size:12.5px;color:var(--aurel-ink);background:transparent;box-shadow:none;}
+.aurel-workbench-tools input::placeholder{color:#68786a;opacity:1;}
+.aurel-workbench-result{font-size:11.5px;color:#607264;white-space:nowrap;}
+.aurel-workbench-more{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;
+  padding:22px 0 0;border-top:1px solid #e3e7dd;margin-top:21px;}
+.aurel-workbench-more span{font-size:11.5px;color:#5d7162;}
+.sr-only {position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+ clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+/* Required fields, precise helper copy and field hover/focus. */
+.form-field>label,.form-field>span{font-size:12.5px;line-height:1.5;font-weight:650;color:#344637;}
+.form-field small{font-size:11.5px;line-height:1.5;color:#637166;}
+.field-input,.aurel-decision-field input,.aurel-access-toolbar select,.aurel-access-find,
+.aurel-auth-input {min-height:var(--aurel-control-height);font-size:13px;border-color:#cfd6ca;
+ border-radius:7px;color:var(--aurel-ink);}
+.field-input::placeholder,.aurel-decision-field input::placeholder {color:#6e7971;opacity:1;}
+.field-input:hover:not(:disabled){border-color:#aebaab;}
+.field-input:focus{border-color:#8d866b;box-shadow:0 0 0 3px #927a591b;}
+.field-input:disabled{background:#f0f1ec;color:#64766a;}
+.form-field .required{color:#8e4d3e;font-size:13px;font-weight:700;}
+/* Approval and reversal dialogs should read as a private verification, not a browser alert. */
+.aurel-decision-top button,.aurel-account-popover>button,.aurel-feedback button{min-width:44px;min-height:44px;}
+.aurel-decision-top button:hover{background:#eae7df;color:#283f31;}
+.aurel-decision-top span {color:#795d3e;letter-spacing:.11em;}
+.aurel-decision>p,.aurel-decision-facts dt,.aurel-confirm-facts dt{font-size:12.5px;color:#596b5c;}
+.aurel-decision-field span{font-size:12.5px;}
+.aurel-decision-warning{font-size:12.5px;}
+/* Meaningful feedback: do not disappear financial confirmations before reading. */
+.toast-v2.aurel-feedback{display:flex;align-items:flex-start;gap:12px;min-width:min(340px,calc(100vw - 24px));
+ max-width:min(465px,calc(100vw - 24px));padding:16px 13px 14px 17px;
+ border-radius:10px;background:#263f32;border:1px solid #415d47;
+ box-shadow:0 18px 48px #2133263b;font-size:12.5px;line-height:1.6;}
+.toast-v2.aurel-feedback.bad {background:#753e35;border-color:#8b554b;}
+.aurel-feedback>span{display:grid;gap:4px;flex:1;min-width:0;}
+.aurel-feedback>span strong{font-size:12px;font-weight:730;letter-spacing:.01em;}
+.aurel-feedback>svg{flex:0 0 auto;margin-top:3px;}
+.aurel-feedback button{margin-top:-7px;margin-right:-6px;flex:0 0 44px;border-radius:7px;}
+.aurel-feedback button:hover{background:#ffffff24;}
+/* Minimize accidental tiny touch targets throughout business views. */
+.aurel-access-actions button{font-size:12px;padding-inline:13px;}
+.aurel-access-create{font-size:12.5px;}
+.aurel-account-popover>button{font-size:12.5px;}
+.aurel-account-trigger:focus-visible{border-radius:5px;}
+.top-search.aurel-top-search {min-height:44px;}
+.data-grid tbody tr[role="button"]:focus-visible{outline:2px solid #90754f!important;outline-offset:-3px!important;}
+@media(max-width:700px){
+ .aurel-workbench-tools{align-items:stretch;flex-direction:column;}
+ .aurel-workbench-tools label{max-width:none;width:100%;min-width:0;}
+ .aurel-workbench-result{align-self:flex-end;}
+ .aurel-workbench-tab{font-size:12px;}
+ .aurel-workbench-figures dt,.aurel-workbench-figures dd{font-size:12px;}
+ .aurel-workbench-actions .btn,.aurel-lease-row-actions .btn{flex:1 1 135px;}
+ .aurel-access-actions{flex-wrap:wrap;justify-content:flex-end;}
+ .aurel-decision-footer .btn,.confirm-actions .btn,.editor-foot .btn{min-height:46px;}
+ .toast-v2.aurel-feedback{right:12px;left:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:none;}
+}
+@media(max-width:360px){.aurel-workbench-header,.aurel-lease-desk-head{padding-inline:15px;}.aurel-workbench-item h4{font-size:17px}.aurel-lease-row-actions .btn{flex:1 1 100%}}
+@media(prefers-reduced-motion: reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;}}
+/* Audit of micro-controls that were still 32–38px in legacy tables. */
+.data-grid .btn,.reminder-actions .btn,.v09-dossier-actions .btn,
+.aurel-lease-row-actions .btn,.aurel-workbench-actions .btn,
+.aurel-access-actions button {min-height:var(--aurel-control-height);}
+.aurel-workbench-item-overline {font-size:10.5px;letter-spacing:.065em;}
+.aurel-workbench-status,.aurel-workbench-empty p,.aurel-lease-overflow {font-size:11.5px;line-height:1.55;}
+.aurel-lease-row-dates strong,.aurel-lease-row-primary strong{font-size:13px;}

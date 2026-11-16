@@ -1,0 +1,22 @@
+/* AUREL V2.20 — verified state: a deliberate pause, not a transient toast. */
+.aurel-sync-banner{position:relative;z-index:3;margin:16px 28px 0;padding:17px 20px;
+  border:1px solid #d5bca6;border-left:3px solid #95714e;border-radius:9px;background:#fffaf2;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:15px;color:#393d32;
+  box-shadow:0 8px 26px rgba(48,55,42,.045)}
+.aurel-sync-banner-copy{display:flex;align-items:flex-start;gap:12px;flex:1;min-width:220px}
+.aurel-sync-banner-copy>svg{color:#875d40;margin-top:3px;flex:none}
+.aurel-sync-banner-copy strong{display:block;font-size:13px;font-weight:700;line-height:1.4}
+.aurel-sync-banner-copy p{margin:5px 0 0;color:#5b6256;font-size:12.5px;line-height:1.6;max-width:70ch}
+.aurel-sync-banner-actions{display:flex;flex-wrap:wrap;gap:9px}
+.aurel-sync-banner .btn{min-height:44px;font-size:12px}
+.aurel-reconcile-note{display:flex;align-items:flex-start;gap:11px;padding:17px 18px;margin:0 0 18px;
+ border:1px solid #dbc3ac;border-left:3px solid #98694e;border-radius:8px;background:#fff9f1}
+.aurel-reconcile-note>svg{color:#8b563b;flex:none}
+.aurel-reconcile-note strong{display:block;font-size:13px;color:#4c3c30}
+.aurel-reconcile-note p{font-size:12.5px;line-height:1.65;color:#605b4e;margin:5px 0 0}
+.aurel-immutable-hint{display:flex;gap:8px;align-items:center;color:#536b55;font-size:12px;line-height:1.55}
+.aurel-write-outcome{display:flex;gap:10px;align-items:flex-start;line-height:1.65}
+.aurel-close-v220 :is(.editor-foot,.editor-head){gap:14px}
+@media(max-width:800px){.aurel-sync-banner{margin:12px 14px 0;padding:14px}.aurel-sync-banner-actions{width:100%}.aurel-sync-banner-actions .btn{flex:1}}
+@media(max-width:390px){.aurel-sync-banner{margin:10px 10px 0}.aurel-sync-banner-actions{flex-direction:column}.aurel-close-v220 .editor-foot>div{gap:7px}}
+@media(prefers-reduced-motion:reduce){.aurel-sync-banner,.aurel-reconcile-note{animation:none!important;transition:none!important}}

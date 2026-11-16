@@ -1,0 +1,27 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import App from './App.jsx';
+import AppRecovery from './components/AppRecovery.jsx';
+import './styles.css';
+import './estate-studio.css';
+import './atelier-forms.css';
+import './atelier-v215.css';
+import './atelier-v216.css';
+import './atelier-v217.css';
+import './atelier-v218.css';
+import './atelier-v219.css';
+import './atelier-v220.css';
+import './atelier-v222.css';
+import './atelier-v223.css';
+import './atelier-v224.css';
+import './atelier-v225.css';
+import './atelier-v226.css';
+import './atelier-v227.css';
+import './atelier-v228.css';
+import './atelier-v229.css';
+import './atelier-v230.css';
+import './atelier-v231.css';
+import './atelier-v232.css';
+import './atelier-v233.css';
+createRoot(document.getElementById('root')).render(<React.StrictMode><AppRecovery><App/></AppRecovery></React.StrictMode>);
+

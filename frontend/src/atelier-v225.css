@@ -1,0 +1,179 @@
+/* AUREL 2.25 — Editorial Luxury System / operational, not a marketing landing page.
+ * Inspired by gallery-grade editorial spacing: a deliberate hierarchy instead
+ * of glass everywhere. A single finishing layer, loaded after the V2.24 button
+ * contract. No extra UI dependencies, image downloads or animation loops.
+ */
+:root {
+  --aurel-25-canvas: #f5f3ed;
+  --aurel-25-sheet: #fffefa;
+  --aurel-25-sheet-muted: #f9f8f3;
+  --aurel-25-pine: #213d32;
+  --aurel-25-pine-dark: #162f26;
+  --aurel-25-ink: #263a30;
+  --aurel-25-subtle: #5e6c62;
+  --aurel-25-muted: #68766b;
+  --aurel-25-copper: #876c47;
+  --aurel-25-rule: #dedfd4;
+  --aurel-25-shadow: 0 12px 34px rgba(40,54,43,.035);
+  --aurel-25-ui: "Be Vietnam Pro", Inter, "Segoe UI", "Noto Sans", Arial, sans-serif;
+  --aurel-25-display: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --aurel-25-space-1: 8px;
+  --aurel-25-space-2: 14px;
+  --aurel-25-space-3: 22px;
+  --aurel-25-space-4: 32px;
+  --aurel-25-space-5: 48px;
+  --aurel-25-space-6: 64px;
+  --aurel-25-card-radius: 18px;
+  --aurel-25-action-radius: 14px;
+  color-scheme:light;
+}
+html {font-synthesis: none;}
+body {font-family:var(--aurel-25-ui);background:var(--aurel-25-canvas);color:var(--aurel-25-ink);}
+.main-area {background:var(--aurel-25-canvas);}
+.content-wrap {max-width:1640px;padding:clamp(26px,3vw,46px) clamp(20px,3vw,48px) 40px;}
+/* Private collection navigation: matte green, editorial treatment, legible labels. */
+.sidebar {background:#192e27;border-color:#30443a;}
+.brand-name {letter-spacing:.17em;font-weight:500;}
+.brand-caption {font-size:10px;letter-spacing:.14em;line-height:1.5;color:#c1cfc3;}
+.sidebar .nav-group {margin-block:14px 22px;}
+.sidebar .nav-group-label {font-size:10px;letter-spacing:.13em;color:#a8bba9;}
+.sidebar .nav-item {font-weight:530;font-size:12.5px;line-height:1.5;min-height:46px;padding:10px 13px;letter-spacing:.002em;color:#d5ded6;border-radius:var(--aurel-25-action-radius)!important;}
+.sidebar .nav-item svg {color:#a9beb2;}
+.sidebar .nav-item.active {background:#e6ece4;color:#1c3729;border-color:#e6ece4;box-shadow:0 3px 12px rgba(5,24,15,.12);}
+.sidebar .nav-item.active svg {color:#294b38;}
+.sidebar .nav-item.active:before {display:none;}
+.sidebar .nav-item:hover:not(.active) {background:#ffffff12;color:#fff;}
+.workspace-card {border-color:#ffffff25;background:#ffffff09;border-radius:var(--aurel-25-card-radius);}
+.workspace-card strong {font-size:12px;}
+.workspace-card span {font-size:11px;}
+.sidebar .side-help {color:#c1d1c5;}
+.sidebar .side-help small {color:#aabfab;}
+/* Discreet navigation chrome; not an app-store glass bar. */
+.topbar {height:74px;background:#fffefa;border-bottom:1px solid var(--aurel-25-rule);}
+.breadcrumb-root {color:#69796f;font-weight:530;}
+.breadcrumb-active {font-weight:650;color:#294639;}
+.aurel-top-search {font-size:12px;}
+.top-date {color:#65756b;font-size:12px;}
+/* Editorial headings — display serif only when large enough to be legible. */
+.page-header {margin-bottom:28px;gap:24px;}
+.page-header h1 {font-family:var(--aurel-25-display);font-weight:500;font-size:clamp(30px,2.65vw,44px);letter-spacing:-.036em;line-height:1.1;color:var(--aurel-25-pine-dark);}
+.page-subtitle {font-size:13.5px;color:var(--aurel-25-subtle);line-height:1.7;max-width:65ch;}
+.overline,.eyebrow {color:var(--aurel-25-copper);font-size:10px;letter-spacing:.13em;font-weight:680;}
+/* A consistent substrate across lists, dossiers, filters, approvals and forms. */
+.content-wrap :is(.panel,.pad-panel,.atelier-projects,.atelier-priority,.aurel-workbench,.aurel-lease-desk,.aurel-journey,.portfolio-index,.quality-review,.aurel-record-card) {
+  border-color:var(--aurel-25-rule);
+  background:var(--aurel-25-sheet);
+  box-shadow:var(--aurel-25-shadow);
+}
+.content-wrap :is(.panel,.pad-panel,.atelier-projects,.atelier-priority,.aurel-workbench,.aurel-lease-desk,.aurel-journey) {border-radius:var(--aurel-25-card-radius);}
+.panel-title,.aurel-workbench-header,.aurel-lease-desk-head {border-color:var(--aurel-25-rule);}
+.content-wrap :is(.panel-title h3,.pad-panel h3,.aurel-workbench-header h3,.aurel-lease-desk-head h3) {
+  color:var(--aurel-25-pine-dark);font-size:clamp(17px,1.4vw,22px);letter-spacing:-.025em;font-weight:620;line-height:1.35;
+}
+.content-wrap :is(p,small,.muted,.panel-counter,.aurel-workbench-stage-note) {overflow-wrap:anywhere;}
+/* Data displays must make amounts and statuses immediately distinguishable. */
+.data-grid thead {background:var(--aurel-25-sheet-muted);}
+.data-grid th {font-size:10.5px;letter-spacing:.075em;font-weight:680;color:#536457;padding-block:14px;}
+.data-grid td {font-size:13px;color:#384b3e;padding-block:14px;line-height:1.55;}
+.data-grid tbody tr:hover {background:#f7f8f1;}
+.data-grid tbody tr:focus-within {background:#f7f8f1;}
+.data-grid td :is(strong,b) {color:#243d2f;}
+.table-frame {scrollbar-color:#b6c0b5 #f5f5ee;}
+:is(.data-grid,.aurel-workbench-figures,.aurel-lease-row,.aurel-ledger,.aurel-fact) :is(strong,dd,.money,.amount) {font-variant-numeric:tabular-nums;}
+/* Forms use the same rhythm and linework as the financial tables. */
+.form-field>label,.form-field>span {font-size:13px;color:#2e4535;font-weight:630;}
+.form-field small {font-size:12px;line-height:1.6;color:var(--aurel-25-subtle);}
+.field-input,.aurel-auth-input,.aurel-decision-field input,.aurel-workbench-tools label {border-color:#cdd4c8;border-radius:12px;background:var(--aurel-25-sheet);}
+.field-input {min-height:48px;font-size:13.5px;}
+.field-input:focus,.field-input:focus-visible {border-color:#89724e;box-shadow:0 0 0 3px #a28a6428;outline:none;}
+.field-input::placeholder {color:#6a796d;}
+.atelier-editor .editor-head {border-color:var(--aurel-25-rule);}
+.atelier-editor .editor-grid {column-gap:26px;row-gap:23px;}
+/* V2.24's unified silhouette is inviolable; Liquid Pearl is a subtle finish. */
+button {border-radius:var(--aurel-25-action-radius)!important;}
+.btn {font-size:13px;min-height:44px;font-weight:620;letter-spacing:0;padding-inline:17px;}
+.btn.primary:not(.aurel-pearl-control) {background:var(--aurel-25-pine);border-color:var(--aurel-25-pine);}
+.btn.primary:not(.aurel-pearl-control):hover:not(:disabled){background:var(--aurel-25-pine-dark);border-color:var(--aurel-25-pine-dark);}
+.btn:is(.secondary,.outline):not(.aurel-pearl-control) {background:var(--aurel-25-sheet);border-color:#ccd3c8;color:#254635;}
+.btn:is(.secondary,.outline):not(.aurel-pearl-control):hover:not(:disabled) {background:#f1f4ee;}
+.btn:is(.danger,.dangerGhost) {background-image:none;filter:none;}
+.aurel-pearl-control:not(:disabled)::before {opacity:.46;}
+.aurel-pearl-control:not(:disabled)::after {opacity:.18;}
+/* Recurring operational modules — hierarchy through spacing, never noisy borders. */
+.aurel-workbench-header,.aurel-lease-desk-head {padding-block:26px;}
+.aurel-workbench-body,.aurel-lease-desk-body {background:var(--aurel-25-sheet);}
+.aurel-workbench-item,.aurel-lease-row {border-color:var(--aurel-25-rule);border-radius:14px;}
+.aurel-workbench-item h4 {font-family:var(--aurel-25-display);font-size:23px;font-weight:500;letter-spacing:-.02em;line-height:1.3;}
+.aurel-workbench-tab,.aurel-lease-filter {color:#455c4a;min-height:48px;font-size:12.5px;}
+.aurel-workbench-tab.is-active,.aurel-lease-filter.is-active {background:#e8eee7;color:#1e4832;}
+.aurel-workbench-stage-note,.aurel-lease-row-primary span {font-size:12px;line-height:1.6;color:#586a5b;}
+.aurel-workbench-figures dt {font-size:11.5px;color:#5a6b5e;}
+.aurel-workbench-figures dd {font-size:15px;font-weight:650;color:#254135;}
+.aurel-workbench-status {font-size:11.5px;line-height:1.5;}
+/* Executive overview has a deliberate printed-catalogue hierarchy. */
+.atelier-home {gap:24px;}
+.atelier-titleline {font-size:10.5px;letter-spacing:.1em;color:#647669;}
+.atelier-hero {border-radius:var(--aurel-25-card-radius);overflow:hidden;box-shadow:var(--aurel-25-shadow);}
+.atelier-hero-main {padding:clamp(24px,3vw,52px);}
+.atelier-hero-copy h1 {font-family:var(--aurel-25-display);font-weight:500;letter-spacing:-.045em;line-height:1.08;font-size:clamp(42px,4.2vw,72px);}
+.atelier-hero-copy h1 em {font-family:var(--aurel-25-display);font-weight:400;}
+.atelier-hero-description {font-size:13.5px;line-height:1.8;max-width:52ch;color:#536457;}
+.atelier-facts {gap:0;box-shadow:var(--aurel-25-shadow);border-radius:var(--aurel-25-card-radius);overflow:hidden;}
+.atelier-fact,.atelier-fact-primary {border-color:var(--aurel-25-rule);}
+.atelier-fact strong,.atelier-fact-primary strong {font-family:var(--aurel-25-display);font-weight:500;font-variant-numeric:lining-nums tabular-nums;}
+.atelier-ledger {background:var(--aurel-25-sheet);border-color:var(--aurel-25-rule);border-radius:var(--aurel-25-card-radius);box-shadow:var(--aurel-25-shadow);}
+.atelier-ledger-heading h2,.atelier-section-heading h2 {font-family:var(--aurel-25-display);font-size:clamp(23px,2.2vw,35px);font-weight:500;letter-spacing:-.035em;}
+.atelier-ledger-columns strong {font-family:var(--aurel-25-display);font-variant-numeric:lining-nums tabular-nums;}
+.atelier-project-row,.atelier-task {min-height:64px;}
+.atelier-project-row b,.atelier-task b {font-size:13px;}
+.atelier-project-row small,.atelier-task small {font-size:11.5px;line-height:1.5;}
+.atelier-project-row:hover,.atelier-task:hover {background:#f5f7f0;}
+.atelier-escrow {line-height:1.65;}
+/* The login experience is a private entry, not a promotional banner. */
+.aurel-auth-story {background:var(--aurel-25-pine-dark);}
+.aurel-auth-story-main h1 {font-family:var(--aurel-25-display);font-weight:500;line-height:1.09;letter-spacing:-.05em;}
+.aurel-auth-heading h2 {font-family:var(--aurel-25-display);font-weight:500;letter-spacing:-.036em;}
+.aurel-auth-heading p,.aurel-auth-hint {font-size:13px;line-height:1.75;}
+.aurel-auth-paper {max-width:520px;}
+.aurel-auth-form label {font-size:13px;}
+.aurel-auth-submit {min-height:48px;font-size:13px;font-weight:620;}
+.aurel-auth-access-foot {font-size:11px;}
+/* No focus may be disguised by luxury decoration. */
+
+:where(.aurel-workbench-tab,.aurel-lease-filter):focus-visible {outline-offset:-3px!important;}
+@media(max-width:1024px){
+ .content-wrap {padding-inline:24px;}
+ .atelier-hero-copy h1 {font-size:clamp(40px,5vw,58px);}
+ .aurel-workbench-header,.aurel-lease-desk-head {padding-block:22px;}
+}
+@media(max-width:700px){
+ .content-wrap {padding:22px 16px 34px;}
+ .topbar {height:66px;}
+ .page-header {gap:14px;margin-bottom:20px;}
+ .page-header h1 {font-size:32px;}
+ .page-subtitle {font-size:13px;}
+ .page-actions {display:flex;flex-wrap:wrap;gap:8px;}
+ .page-actions .btn {flex:1 1 auto;min-height:46px;}
+ .aurel-workbench-header,.aurel-lease-desk-head {padding:20px 17px;}
+ .aurel-workbench-item {padding-inline:16px;}
+ .atelier-hero-main {padding:26px 22px;}
+ .atelier-hero-copy h1 {font-size:clamp(37px,10vw,49px);}
+ .atelier-facts {border-radius:14px;}
+ .atelier-ledger {border-radius:14px;}
+ .atelier-project-row,.atelier-task {min-height:58px;}
+ .form-field>label,.form-field>span {font-size:13px;}
+ .aurel-workbench-tabs,.aurel-lease-filters {scrollbar-width:thin;}
+ .editor-foot {padding-bottom:calc(15px + env(safe-area-inset-bottom,0px));}
+}
+@media(max-width:360px){
+ .content-wrap {padding-inline:12px;}
+ .page-header h1 {font-size:29px;}
+ .aurel-workbench-tab,.aurel-lease-filter {font-size:12px;}
+ .btn {font-size:12.5px;}
+}
+@media(hover:none){
+ .aurel-pearl-control:not(:disabled):hover,.btn:hover:not(:disabled) {transform:none!important;}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important;}
+}

@@ -1,0 +1,126 @@
+# AUREL: acceptance pipeline using throwaway data only. Not a production deploy.
+name: AUREL integration acceptance
+
+on:
+  push:
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'database/**'
+      - 'scripts/**'
+      - 'package.json'
+      - '.github/workflows/integration-acceptance.yml'
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'database/**'
+      - 'scripts/**'
+      - 'package.json'
+      - '.github/workflows/integration-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aurel-acceptance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  json-smoke-and-build:
+    name: React build + disposable JSON HTTP smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source integrity and approved AUREL logo before installing
+        run: npm run qa:source
+      - name: Install frontend and backend dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Preserve generated package-lock for matching dependencies
+        uses: actions/upload-artifact@v4
+        with:
+          name: aurel-ci-package-lock
+          path: package-lock.json
+          retention-days: 7
+          if-no-files-found: error
+      - name: Verify React DOM behavior without browser geometry claims
+        run: npm run qa:dom
+      - name: Run build, domain tests, integrity check and HTTP smoke
+        run: npm run qa:gate
+      - name: Verify live React in headless Chrome with isolated JSON test data
+        env:
+          AUREL_QA_OUTPUT_DIR: /tmp/aurel-react-evidence
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME_BIN" ]; then
+            echo 'Live browser NOT RUN: Chrome/Chromium executable missing' >&2
+            exit 2
+          fi
+          AUREL_CHROME_BIN="$CHROME_BIN" npm run qa:browser
+      - name: Attach temporary-data React desktop/mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aurel-react-browser-evidence
+          path: /tmp/aurel-react-evidence/*.png
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Record acceptance status
+        if: success()
+        run: echo 'JSON smoke and React build PASSED. This is not production acceptance.' >> "$GITHUB_STEP_SUMMARY"
+
+  postgres-end-to-end:
+    name: PostgreSQL 16 migrations + rollback + HTTP smoke
+    needs: json-smoke-and-build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: aurelqa
+          POSTGRES_PASSWORD: aurel_ci_disposable_only
+          POSTGRES_DB: aurel_workspace_test
+        ports:
+          - 5436:5432
+        options: >-
+          --health-cmd "pg_isready -U aurelqa -d aurel_workspace_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 15
+    env:
+      AUREL_STORAGE: postgres
+      AUREL_PG_TEST_DATABASE_URL: postgresql://aurelqa:aurel_ci_disposable_only@127.0.0.1:5436/aurel_workspace_test
+      AUREL_PG_TEST_WRITE_ACK: 'yes'
+      PG_SSL: 'false'
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reuse the exact dependency lock from the JSON stage
+        uses: actions/download-artifact@v4
+        with:
+          name: aurel-ci-package-lock
+          path: .
+      - name: Install the locked frontend and backend dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install PostgreSQL 16 client for isolated pg_dump / pg_restore
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y postgresql-client-16
+      - name: Inspect pristine disposable database (read only)
+        run: npm run qa:pg:inspect
+      - name: Execute full PostgreSQL integration gate
+        run: npm run qa:gate:pg
+      - name: Record acceptance status
+        if: success()
+        run: echo 'PostgreSQL test database migrations, atomic rollback, HTTP CRUD and financial smoke PASSED. Manual UAT remains required.' >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,46 @@
+{
+  "release": "2.54.0",
+  "gate": "dependency-free source UI stability",
+  "result": "PASS",
+  "cssImportCount": 21,
+  "lastCssImport": "atelier-v233.css",
+  "newStylesheetsAdded": 0,
+  "checks": {
+    "buttonRadiusPx": 14,
+    "minimumActionHeightPx": 44,
+    "modalFocusShared": true,
+    "mobileEditableFontPx": 16
+  },
+  "contrastChecks": [
+    {
+      "foreground": "ink",
+      "background": "porcelain",
+      "ratio": 11.56
+    },
+    {
+      "foreground": "muted",
+      "background": "silk",
+      "ratio": 5.54
+    },
+    {
+      "foreground": "copper",
+      "background": "silk",
+      "ratio": 4.62
+    },
+    {
+      "foreground": "ink",
+      "background": "jade",
+      "ratio": 9.65
+    },
+    {
+      "foreground": "porcelain",
+      "background": "forest",
+      "ratio": 9.36
+    }
+  ],
+  "issues": [],
+  "limits": [
+    "Static assertions do not prove React runtime styles",
+    "Safari, Android, Express and PostgreSQL still require separate E2E tests"
+  ]
+}

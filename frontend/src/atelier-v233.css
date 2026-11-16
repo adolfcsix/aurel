@@ -1,0 +1,675 @@
+/* AUREL V2.33 — Maison Signature Palette
+ * Deliberate tonal redistribution, not another visual theme.
+ * 80% continuity with V2.32: pine, pearl, silk and restrained champagne.
+ * This is a presentation-only layer. Finance/status semantics, access, CSS
+ * control silhouette and application workflows must remain untouched.
+ */
+:root {
+  --maison-33-forest:#294d3d;
+  --maison-33-forest-deep:#203f33;
+  --maison-33-forest-soft:#315644;
+  --maison-33-porcelain:#fffefa;
+  --maison-33-silk:#f7f4ed;
+  --maison-33-ivory:#faf9f4;
+  --maison-33-jade:#e3ece3;
+  --maison-33-mist:#eef2ec;
+  --maison-33-champagne:#e7d9c4;
+  --maison-33-copper:#836a4d;
+  --maison-33-ink:#263d34;
+  --maison-33-muted:#52675c;
+  --maison-33-rule:#dee4dc;
+  --maison-33-shell:radial-gradient(ellipse 60% 58% at 80% 5%,rgba(218,230,217,.34),transparent 78%),radial-gradient(ellipse 43% 49% at 6% 92%,rgba(231,217,196,.22),transparent 83%),linear-gradient(118deg,#faf9f4 0%,#f8f9f4 46%,#f7f4ed 100%);
+  --maison-33-sheet:linear-gradient(125deg,#fffefa 0%,#fdfcf8 70%,#f8f6ef 100%);
+  --maison-33-header:linear-gradient(113deg,#fffefa 0%,#fbfbf6 72%,#f4f6f0 100%);
+  --maison-33-rail:linear-gradient(156deg,#294d3d 0%,#315644 44%,#244638 100%);
+  /* Replace V2.32 surface aliases, not its focus and state contracts. */
+  --maison-surface-page:var(--maison-33-shell);
+  --maison-surface-sheet:var(--maison-33-sheet);
+  --maison-surface-header:var(--maison-33-header);
+  --maison-surface-pure:var(--maison-33-porcelain);
+  --maison-surface-soft:var(--maison-33-mist);
+  --maison-surface-quiet:var(--maison-33-ivory);
+  --maison-text-main:var(--maison-33-ink);
+  --maison-text-supporting:var(--maison-33-muted);
+  --maison-rule-hairline:var(--maison-33-rule);
+}
+/* The navigation is a single quiet color anchor, not a heavy dark block. */
+.sidebar {background:var(--maison-33-rail);border-right-color:#547160;}
+.sidebar .brand {border-bottom-color:rgba(233,240,231,.16);}
+.sidebar .nav-group+.nav-group {border-top-color:rgba(233,240,231,.16);}
+.sidebar .nav-group-label {color:#d0dccf;}
+.sidebar .nav-item {color:#f1f5ef;}
+.sidebar .nav-item svg {color:#c6d8c8;}
+.sidebar .nav-item.active {
+  background:linear-gradient(103deg,rgba(255,254,250,.15),rgba(244,247,237,.07));
+  border-color:rgba(241,239,223,.16)!important;
+  color:#fffefa;
+}
+.sidebar .nav-item.active::before {background:#e5d4ae;}
+.sidebar .nav-item:hover:not(.active) {background:rgba(255,254,250,.09);}
+.sidebar .nav-count {background:#426955;border-color:#799985;color:#fffefa;}
+.sidebar .aurel-workspace-context {border-left-color:#ddc79e;}
+/* Strong page hierarchy through restraint, not box-on-box decoration. */
+body,.main-area {background:var(--maison-33-shell);color:var(--maison-33-ink);}
+.topbar {background:var(--maison-33-header);border-bottom-color:var(--maison-33-rule);}
+.topbar :is(.aurel-top-search,.mobile-toggle) {
+  background:linear-gradient(113deg,#fffefa,#f2f5ef);
+  border-color:#dae4da;color:#294d3d;
+}
+.aurel-account-popover {background:var(--maison-33-sheet);border-color:var(--maison-33-rule);}
+.aurel-account-avatar {background:linear-gradient(145deg,#f6efe2,#e2ebe1);color:#294d3d;}
+/* Foreground cards are more porcelain than jade; jade is reserved for supporting tiers. */
+.content-wrap :is(.panel,.pad-panel,.atelier-projects,.atelier-priority,.table-frame,.atelier-ledger,.aurel-workbench,.aurel-lease-desk) {
+  background:var(--maison-33-sheet);border-color:var(--maison-33-rule);
+  box-shadow:0 13px 34px rgba(32,63,51,.025);
+}
+.content-wrap :is(.data-grid th,.table-frame thead) {background:#f2f4ee;color:#3c5546;}
+.content-wrap :is(.data-grid td,.data-grid th) {border-color:var(--maison-33-rule);}
+.content-wrap :is(.data-grid tbody tr:hover,.atelier-project-row:hover,.atelier-task:hover) {background:rgba(227,236,227,.30);}
+.page-header h1,.atelier-ledger-heading h2,.atelier-section-heading h2 {color:var(--maison-33-ink);}
+.overline,.eyebrow,.atelier-titleline {color:var(--maison-33-copper);}
+/* Editorial cover uses porcelain, then fades into silk. Champagne marks a detail. */
+.atelier-hero,.aurel-dossier-hero {background:var(--maison-33-sheet);border-color:var(--maison-33-rule);}
+.atelier-hero-main {
+  background:radial-gradient(ellipse 54% 86% at 96% 0%,rgba(227,236,227,.32),transparent 85%),linear-gradient(125deg,#fffefa,#faf9f4 74%,#f5f1e8);
+}
+.atelier-facts {background:linear-gradient(115deg,#f7f7f0,#eef2ec 57%,#f7f4ed);border-color:var(--maison-33-rule);}
+.atelier-fact,.atelier-fact-primary {background:transparent;border-color:#e1e6dd;}
+/* Satin action layer uses pale green only as a whisper.
+   Financial, destructive and submit buttons keep their existing semantic finish. */
+.content-wrap :is(.btn:not(.primary):not(.danger):not(.dangerGhost),.aurel-record-quiet,.aurel-dossier-record-end .btn:not(.primary)) {
+  background:linear-gradient(121deg,#fffefa,#f3f5ef);border-color:#dce5db;color:#294d3d;
+}
+.content-wrap :is(.btn:not(.primary):not(.danger):not(.dangerGhost),.aurel-record-quiet):hover:not(:disabled) {
+  background:linear-gradient(121deg,#fffefa,#ebf1e9);border-color:#b9cdbb;
+}
+/* Surfaces for records and forms remain solid enough for dense information. */
+.editor.atelier-editor,.aurel-dossier-sheet {background:var(--maison-33-ivory);border-color:var(--maison-33-rule);}
+.atelier-editor .editor-head,.atelier-editor .editor-foot,.aurel-dossier-top,.aurel-dossier-bottom {background:var(--maison-33-header);border-color:var(--maison-33-rule);}
+.atelier-editor .editor-body {background:linear-gradient(164deg,#fffefa 0%,#f9f9f3 67%,#f7f4ed 100%);}
+.atelier-editor :is(input.field-input,select.field-input,textarea.field-input) {
+  background:var(--maison-33-porcelain);border-color:#cbd8cb;color:var(--maison-33-ink);
+}
+.atelier-form-intro {background:linear-gradient(112deg,#f3f3e9,#eef2ec 74%,#f5efe4);border-left-color:#b59b75;color:#3c5847;}
+.atelier-form-toc button[aria-current="location"] {background:#edf2e9;color:#294d3d;}
+.atelier-section-index {background:linear-gradient(133deg,#f6f1e7,#f0f4eb);border-color:#dfdfd2;}
+.aurel-dossier-hero {background:linear-gradient(117deg,#fffefa,#f7f5ed)!important;}
+.aurel-dossier-scroll {background:linear-gradient(166deg,#fffefa 0%,#f9faf5 61%,#f8f5ef 100%);}
+.aurel-dossier-record:hover {background:rgba(227,236,227,.28);}
+/* Never let finish changes alter action geometry or interaction state. */
+.content-wrap :is(.btn,.aurel-record-quiet,.aurel-record-action),
+.atelier-editor .editor-foot .btn,.aurel-dossier-sheet button {
+  border-radius:var(--aurel-action-radius,14px)!important;
+}
+/* Keep high contrast and user-chosen platform colors rather than forcing luxury colors. */
+@media (prefers-contrast:more) {
+  body,.main-area,.content-wrap :is(.panel,.table-frame,.aurel-workbench),
+  .aurel-dossier-scroll,.atelier-editor .editor-body {background:var(--maison-33-porcelain);}
+  .sidebar {background:var(--maison-33-forest-deep);}
+  .topbar,.atelier-editor .editor-head,.atelier-editor .editor-foot {background:var(--maison-33-porcelain);}
+}
+@media (forced-colors:active) {
+  body,.main-area,.sidebar,.topbar,.aurel-dossier-scroll,.atelier-editor .editor-body {background:Canvas;color:CanvasText;}
+}
+@media (max-width:700px) {
+  .aurel-dossier-scroll,.atelier-editor .editor-body {background:var(--maison-33-ivory);}
+}
+@media (prefers-reduced-motion:reduce) {
+  .sidebar .nav-item,.content-wrap .btn,.atelier-editor .field-input {animation:none!important;transition:none!important;}
+}
+/* V2.34 runtime stability refinements — appended to the existing signature
+   stylesheet instead of adding another competing cascade layer. */
+@supports (scrollbar-gutter:stable) {
+  /* Prevent the entire workspace from shifting horizontally while a dossier,
+     search panel or editor locks the document scroll. */
+  html {scrollbar-gutter:stable;}
+}
+.table-frame {
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
+@media (max-width:800px) {
+  /* iOS Safari zooms the page when a focused input's text is below 16px.
+     Restrict this correction to editable fields, not the entire UI. */
+  .aurel-find-search input,
+  .aurel-client-filterbar input,
+  .aurel-client-filterbar select,
+  .atelier-editor .field-input,
+  .aurel-decision-field input,
+  .aurel-auth-panel input,
+  .aurel-auth-card input {font-size:16px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto!important;}
+}
+/* V2.37 — Essential client record: real persisted fields, editorial grouping,
+   no decorative empty cards or inferred legal relationships. */
+.aurel-client-dossier .aurel-client-summary {margin-bottom:4px;}
+.aurel-client-dossier .aurel-dossier-details {align-items:start;}
+.aurel-client-dossier .aurel-dossier-detail {min-height:77px;}
+.aurel-client-dossier .aurel-client-contact-link {
+  color:#294f3f;text-decoration-color:#b4a18a;text-underline-offset:4px;
+  overflow-wrap:anywhere;
+}
+.aurel-client-dossier .aurel-client-contact-link:hover {text-decoration-color:#294f3f;}
+.aurel-client-dossier .aurel-client-notes {
+  margin-top:24px;padding:16px 0 2px;border-top:1px solid #e3e5db;
+}
+.aurel-client-dossier .aurel-client-notes span {font-size:12px;color:#62796b;font-weight:600;}
+.aurel-client-dossier .aurel-client-notes p {margin:9px 0 0;white-space:pre-wrap;line-height:1.8;color:#314e40;font-size:14px;overflow-wrap:anywhere;}
+.aurel-client-dossier .aurel-client-status-note {margin:20px 0 0;color:#735f44;font-size:13px;line-height:1.65;}
+.aurel-client-dossier .aurel-client-match-note {font-size:13px;color:#627367;line-height:1.8;max-width:70ch;margin:0 0 18px;}
+@media(max-width:700px){
+  .aurel-client-dossier .aurel-dossier-details {grid-template-columns:minmax(0,1fr);}
+  .aurel-client-dossier .aurel-dossier-detail {min-height:0;padding:14px 0;}
+  .aurel-client-dossier .aurel-client-summary {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .aurel-client-dossier .aurel-client-summary>div:last-child {grid-column:1/-1;border-bottom:0!important;}
+}
+
+/* V2.38 — Essential dossier refinements within the established Maison palette.
+   Do not introduce another global stylesheet or instructional banners. */
+.aurel-dossier-fineprint {margin:17px 0 0;color:var(--maison-33-muted,#52675c);font-size:12px;line-height:1.7;overflow-wrap:anywhere;}
+.aurel-dossier-record {min-width:0;}
+.aurel-dossier-record>div:first-child {min-width:0;}
+.aurel-dossier-record strong,.aurel-dossier-detail strong {overflow-wrap:anywhere;}
+.aurel-dossier-record .aurel-dossier-count {white-space:nowrap;color:var(--maison-33-ink,#263d34);font-size:12px;}
+.aurel-client-notes {max-width:100%;overflow-wrap:anywhere;}
+@media(max-width:700px){
+ .aurel-dossier-fineprint {font-size:12px;line-height:1.6;}
+ .aurel-dossier-record .aurel-dossier-count {white-space:normal;}
+}
+
+/* V2.39 — small, consistent missing-value treatment across dossier fields.
+   No new theme or stylesheet; retain existing 14px action geometry. */
+.aurel-dossier-detail.is-empty > strong {
+ color:var(--maison-33-muted,#52675c);
+ font-weight:400;
+}
+
+
+/* V2.40 — Maison Action Atelier. Shared, optically refined action grammar.
+ * Not a theme change: silhouette, access semantics and financial safeguards stay fixed.
+ * Buttons are crafted according to intent, rather than uniformly decorated. */
+:root {
+ --maison-action-ease:cubic-bezier(.25,.75,.25,1);
+ --maison-action-radius:var(--aurel-action-radius,14px);
+ --maison-action-tint:#f3f5ef;
+ --maison-action-line:#cbd7ca;
+ --maison-action-gold:#d1bb95;
+}
+.btn.aurel-refined-action {
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;
+ min-height:46px;max-width:100%;padding:10px 17px;
+ font-family:inherit;font-size:13px;font-weight:610;letter-spacing:-.008em;line-height:1.3;
+ border:1px solid var(--maison-action-line);
+ border-radius:var(--maison-action-radius)!important;
+ text-align:center;text-decoration:none;white-space:normal;overflow-wrap:anywhere;
+ transform:none!important;
+ transition:background-color 170ms var(--maison-action-ease),border-color 170ms var(--maison-action-ease),box-shadow 170ms var(--maison-action-ease),color 170ms var(--maison-action-ease);
+}
+.btn.aurel-refined-action .aurel-btn-copy {position:relative;z-index:1;display:block;min-width:0;}
+.btn.aurel-refined-action .aurel-btn-leading,.btn.aurel-refined-action .aurel-btn-tail {position:relative;z-index:1;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;}
+.btn.aurel-refined-action .aurel-btn-leading svg,.btn.aurel-refined-action .aurel-btn-tail svg {display:block;}
+/* The signature primary control: a forest satin surface with almost invisible inset light. */
+:is(.content-wrap,.atelier-editor,.aurel-dossier-sheet) .btn.aurel-refined-action.primary,
+.btn.aurel-refined-action.primary {
+ background:linear-gradient(155deg,#315846 0%,#274a3b 70%,#234436 100%);
+ color:#fffefa;border-color:#244638;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 2px 3px rgba(25,55,38,.07);
+}
+/* Supporting actions resemble porcelain, not a second primary button. */
+:is(.content-wrap,.atelier-editor,.aurel-dossier-sheet) .btn.aurel-refined-action:is(.secondary,.outline),
+.btn.aurel-refined-action:is(.secondary,.outline) {
+ background:linear-gradient(125deg,#fffefa 0%,#f6f7f0 100%);
+ color:#294d3b;border-color:#d3ddd0;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.82);
+}
+/* Navigational actions show their direction at the END of the label.
+ * This narrow chamfered recess becomes the recognizable AUREL button detail. */
+.btn.aurel-refined-action[data-aurel-intent="navigate"] {justify-content:space-between;gap:12px;padding-right:8px;}
+.btn.aurel-refined-action[data-aurel-intent="navigate"] .aurel-btn-tail {
+ width:29px;height:29px;border-radius:10px;
+ border:1px solid rgba(70,101,73,.14);background:rgba(228,235,224,.55);
+ color:#365b45;
+}
+.btn.aurel-refined-action.primary[data-aurel-intent="navigate"] .aurel-btn-tail {
+ color:#fff9e9;border-color:rgba(243,231,205,.20);background:rgba(255,255,255,.10);
+}
+/* Financial and irreversible actions remain plain: no champagne/glow/pearl. */
+.btn.aurel-refined-action:is(.danger,.dangerGhost) {background-image:none;box-shadow:none;}
+.btn.aurel-refined-action:is(:disabled,[aria-busy="true"]) {box-shadow:none;transform:none!important;cursor:not-allowed;}
+.btn.aurel-refined-action:is(:disabled,[aria-busy="true"]) .aurel-btn-tail {background:transparent;}
+.btn.aurel-refined-action:focus-visible {
+ outline:2px solid #94764e!important;outline-offset:3px!important;
+ box-shadow:0 0 0 1px #fffefa;
+}
+/* Quiet dossier controls: closing the record should not compete with editing. */
+.aurel-dossier-sheet :is(.aurel-dossier-back,.aurel-dossier-close) {
+ min-height:44px;display:inline-flex;align-items:center;gap:8px;
+ padding:9px 13px;font-weight:570;font-size:12.5px;letter-spacing:0;
+ color:#3e5648;background:transparent;border:1px solid transparent;
+ border-radius:var(--maison-action-radius)!important;
+}
+.aurel-dossier-sheet :is(.aurel-dossier-back,.aurel-dossier-close):focus-visible {outline:2px solid #94764e!important;outline-offset:3px;}
+/* Give unlabelled icon actions a usable, understated target. */
+:is(.content-wrap,.atelier-editor) .icon-btn {min-width:44px;min-height:44px;border-radius:var(--maison-action-radius)!important;}
+@media(hover:hover) and (pointer:fine) {
+ :is(.content-wrap,.atelier-editor,.aurel-dossier-sheet) .btn.aurel-refined-action.primary:hover:not(:disabled),
+ .btn.aurel-refined-action.primary:hover:not(:disabled) {background:linear-gradient(155deg,#385f4d,#2d5240);border-color:#254638;box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 3px 7px rgba(25,55,38,.09);transform:none!important;}
+ :is(.content-wrap,.atelier-editor,.aurel-dossier-sheet) .btn.aurel-refined-action:is(.secondary,.outline):hover:not(:disabled),
+ .btn.aurel-refined-action:is(.secondary,.outline):hover:not(:disabled) {background:#f1f5ee;border-color:#b2c5b3;transform:none!important;}
+ .btn.aurel-refined-action[data-aurel-intent="navigate"]:hover:not(:disabled) .aurel-btn-tail {border-color:#b3c9b7;background:#e4eee3;}
+ .btn.aurel-refined-action.primary[data-aurel-intent="navigate"]:hover:not(:disabled) .aurel-btn-tail {background:rgba(255,255,255,.14);border-color:rgba(243,231,205,.34);}
+ .aurel-dossier-sheet :is(.aurel-dossier-back,.aurel-dossier-close):hover:not(:disabled) {background:rgba(233,239,230,.55);border-color:#e1e8de;}
+}
+@media(max-width:700px) {
+ .btn.aurel-refined-action {min-height:48px;padding-block:11px;font-size:13px;}
+ .btn.aurel-refined-action[data-aurel-intent="navigate"] {padding-right:8px;}
+ .aurel-dossier-sheet :is(.aurel-dossier-back,.aurel-dossier-close){min-height:44px;}
+}
+@media(prefers-reduced-motion:reduce) {
+ .btn.aurel-refined-action,.btn.aurel-refined-action::before,.btn.aurel-refined-action::after,
+ .aurel-dossier-sheet :is(.aurel-dossier-back,.aurel-dossier-close){transition:none!important;animation:none!important;transform:none!important;}
+}
+@media(forced-colors:active) {
+ .btn.aurel-refined-action {background:ButtonFace!important;color:ButtonText!important;border:1px solid ButtonText!important;box-shadow:none!important;}
+ .btn.aurel-refined-action[data-aurel-intent="navigate"] .aurel-btn-tail {background:ButtonFace;color:ButtonText;border-color:ButtonText;}
+}
+
+/* Tiny administrative tools are quiet, but never undersized. */
+.spatial-actions .aurel-icon-action {min-width:44px;min-height:44px;border:1px solid transparent;background:transparent;color:#345642;border-radius:var(--maison-action-radius)!important;}
+@media(hover:hover) and (pointer:fine) {.spatial-actions .aurel-icon-action:hover {border-color:#d7e0d3;background:#f0f4ec;}}
+
+/* Homepage main navigation is made from the same satin and tail vocabulary. */
+.atelier-hero-bottom .aurel-signature-cta {
+ display:inline-flex;align-items:center;justify-content:space-between;gap:16px;
+ min-height:48px;padding:9px 9px 9px 18px;border-radius:var(--maison-action-radius)!important;
+ border:1px solid #244638;background:linear-gradient(155deg,#315846,#254638);
+ color:#fffefa;box-shadow:inset 0 1px 0 rgba(255,255,255,.20);
+ font-size:13px;font-weight:610;letter-spacing:-.008em;transform:none!important;
+}
+.atelier-hero-bottom .aurel-signature-cta .aurel-btn-tail {width:29px;height:29px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(243,231,205,.20);background:rgba(255,255,255,.10);}
+@media(hover:hover) and (pointer:fine){.atelier-hero-bottom .aurel-signature-cta:hover:not(:disabled){background:linear-gradient(155deg,#395f4d,#2b4e3d);transform:none!important;}}
+
+/* V2.41 — Account craftsmanship. Applied to existing surfaces, no new CSS layer. */
+.aurel-auth :is(.aurel-auth-submit,.aurel-auth-reveal,.aurel-auth-textbutton),
+.aurel-access-manager :is(.aurel-access-create,.aurel-access-actions button),
+.aurel-account-menu :is(.aurel-account-trigger,.aurel-account-popover>button) {
+ border-radius:var(--aurel-action-radius,14px);
+ -webkit-tap-highlight-color:transparent;
+}
+.aurel-auth-submit,.aurel-access-create {
+ background:linear-gradient(143deg,#315845 0%,#244637 66%,#203b30 100%);
+ border:1px solid #284c3b;
+ color:#fffefa;
+ box-shadow:inset 0 1px rgba(255,255,255,.14),0 5px 17px rgba(31,64,47,.09);
+ font-size:13px;font-weight:630;letter-spacing:.005em;
+}
+.aurel-access-manager .aurel-access-actions button {
+ min-height:44px;gap:8px;padding-inline:14px;
+ border:1px solid #d9e1d8;background:linear-gradient(126deg,#fffefa,#f5f6ef);
+ color:#2d5040;font-size:12px;font-weight:620;white-space:normal;
+}
+.aurel-access-manager .aurel-access-actions button:hover:not(:disabled) {background:#edf2eb;border-color:#b7cabc;}
+.aurel-account-menu .aurel-account-popover>button {min-height:44px;padding-inline:13px;}
+.aurel-auth :is(.aurel-auth-submit,.aurel-auth-reveal,.aurel-auth-textbutton):focus-visible,
+.aurel-access-manager :is(.aurel-access-create,.aurel-access-actions button):focus-visible,
+.aurel-account-menu :is(.aurel-account-trigger,.aurel-account-popover>button):focus-visible {
+ outline:2px solid #8a7458;outline-offset:3px;
+}
+.aurel-auth :is(.aurel-auth-submit,.aurel-auth-reveal,.aurel-auth-textbutton):disabled,
+.aurel-access-manager :is(.aurel-access-create,.aurel-access-actions button):disabled {box-shadow:none;transform:none;}
+@media(max-width:800px){
+ .aurel-auth .aurel-auth-input input,.aurel-access-manager .aurel-access-find input,
+ .aurel-access-manager .aurel-access-toolbar select {font-size:16px;}
+ .aurel-auth .aurel-auth-reveal {min-height:44px;padding-inline:12px;}
+}
+@media(max-width:620px){
+ .aurel-access-manager .aurel-access-actions {display:flex;width:100%;margin-left:0;gap:9px;}
+ .aurel-access-manager .aurel-access-actions button {flex:1;justify-content:center;}
+}
+@media(prefers-reduced-motion:reduce){
+ .aurel-auth .aurel-auth-submit,.aurel-access-manager .aurel-access-actions button {transition:none;transform:none;}
+}
+@media(forced-colors:active){
+ .aurel-auth-submit,.aurel-access-create,.aurel-access-actions button {forced-color-adjust:auto;box-shadow:none;}
+}
+/* Prevent a single-word orphan in the editorial login headline. */
+.aurel-auth-story h1 em {text-wrap:balance;}
+
+/* V2.42 — spatial catalog action continuity (existing final stylesheet).
+   Small icon buttons remain elegant, but the actual target is at least 44 px. */
+.spatial-catalog .spatial-actions .aurel-icon-action{
+  min-width:44px;min-height:44px;border-radius:var(--aurel-action-radius,14px);
+  border:1px solid transparent;color:var(--maison-33-ink,#244739);
+  background:transparent;transition:background-color .16s ease,border-color .16s ease;
+}
+.spatial-catalog .spatial-actions .aurel-icon-action:hover{
+  background:var(--maison-33-jade,#dde7df);border-color:rgba(36,71,57,.14);
+}
+.spatial-catalog .spatial-actions .aurel-icon-action:focus-visible{
+  outline:2px solid var(--maison-33-forest,#244739);outline-offset:2px;
+}
+.spatial-catalog .spatial-room{min-height:46px;padding-block:0;}
+.spatial-catalog .spatial-open-units .btn{min-height:44px;}
+@media(prefers-reduced-motion:reduce){
+ .spatial-catalog .spatial-actions .aurel-icon-action{transition:none;}
+}
+
+
+/* V2.44 — Maison Editorial Layout. Source-inspired composition, not a new theme.
+ * References: Christie’s International Real Estate scalable editorial patterns,
+ * Sotheby’s magazine-like property details, Aman calm information hierarchy.
+ * Shared layout tokens keep every management screen aligned; no new visual layer. */
+:root{
+ --maison-layout-max:1536px;
+ --maison-layout-edge:clamp(20px,3.4vw,56px);
+ --maison-layout-flow:clamp(22px,2.8vw,38px);
+ --maison-layout-rule:#dfe4da;
+ --maison-layout-reading:68ch;
+}
+/* One shared content grid, identical horizontal origin for breadcrumb, headings,
+   filters, tables and footer. The rail remains the visual anchor. */
+@media(min-width:801px){
+ .app-shell{grid-template-columns:clamp(240px,18.2vw,262px) minmax(0,1fr);}
+}
+.main-area{min-width:0;}
+.main-area>.topbar{padding-inline:var(--maison-layout-edge);}
+.content-wrap{box-sizing:border-box;width:100%;max-width:var(--maison-layout-max);
+ margin-inline:auto;padding:clamp(26px,3.1vw,44px) var(--maison-layout-edge) clamp(38px,4vw,60px);}
+.content-wrap :is(.panel,.pad-panel,.portfolio-index,.aurel-workbench,.aurel-lease-desk,.table-frame){min-width:0;}
+.content-wrap>.workspace-footer{border-top:1px solid var(--maison-layout-rule);margin-top:clamp(34px,4vw,58px);padding-top:19px;}
+/* Section headings: substantial title, readable supporting line, restrained rule.
+   On narrow widths actions sit BELOW the title rather than compressing it. */
+.content-wrap .page-header{display:grid;grid-template-columns:minmax(0,1fr) auto;
+ align-items:end;column-gap:clamp(25px,3vw,52px);row-gap:20px;
+ border-bottom:1px solid var(--maison-layout-rule);padding-bottom:clamp(20px,2.4vw,32px);margin-bottom:var(--maison-layout-flow);}
+.page-header>div:first-child{min-width:0;max-width:780px;}
+.content-wrap .page-header h1{max-width:24ch;line-height:1.13;margin-bottom:10px;}
+.content-wrap .page-header .page-subtitle{max-width:var(--maison-layout-reading);margin:0;line-height:1.7;}
+.content-wrap .page-actions{display:flex;justify-content:flex-end;align-items:center;gap:9px;flex-wrap:wrap;max-width:500px;}
+.content-wrap .page-actions:empty{display:none;}
+/* A premium operating desk should still prioritize facts over decoration.
+   One editorial cover, then clear figures, financial ledger and two work queues. */
+.content-wrap[data-aurel-layout="overview"]{padding-top:clamp(28px,2.8vw,40px);}
+.atelier-home{display:grid;gap:clamp(18px,2vw,26px);min-width:0;}
+.atelier-titleline{display:flex;align-items:center;justify-content:space-between;gap:15px;line-height:1.5;}
+.atelier-hero{display:grid;grid-template-columns:minmax(0,1.17fr) minmax(280px,.83fr);
+ min-height:clamp(335px,28vw,414px);box-shadow:none;}
+.atelier-hero-main{padding:clamp(30px,3.25vw,53px);min-height:0;}
+.atelier-hero-photo{min-height:0;background-position:center 43%;}
+.atelier-hero h1,.atelier-hero-copy h1{font-size:clamp(40px,4vw,67px);line-height:1.08;max-width:13ch;margin:10px 0 19px;}
+.atelier-hero-description{font-size:14px;line-height:1.75;max-width:45ch;}
+.atelier-hero-bottom{margin-top:28px;}
+.atelier-facts{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));border:1px solid var(--maison-layout-rule);border-radius:18px;overflow:hidden;}
+.atelier-fact-primary,.atelier-fact{padding:clamp(18px,2vw,29px);min-width:0;}
+.atelier-ledger{margin-top:clamp(12px,1.8vw,26px);}
+.atelier-ledger-heading{padding:clamp(22px,2.5vw,34px);}
+.atelier-ledger-columns{padding:8px 12px;}
+.atelier-ledger-columns>div{padding:clamp(15px,1.8vw,26px);}
+.atelier-bottom-grid{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(0,.87fr);gap:clamp(16px,1.8vw,25px);margin-top:clamp(10px,1.7vw,25px);}
+.atelier-section-heading{padding:clamp(20px,2.2vw,30px);}
+/* Dense records and actions must share consistent breathing room. */
+.content-wrap .table-frame{border-radius:18px;}
+.content-wrap .data-grid th{padding:15px clamp(12px,1.45vw,20px);font-weight:670;}
+.content-wrap .data-grid td{padding:16px clamp(12px,1.45vw,20px);vertical-align:middle;}
+.content-wrap .data-grid td:has(.btn){white-space:normal;}
+.content-wrap :is(.toolbar,.filterbar,.filter-row,.aurel-workbench-tools){gap:12px;min-width:0;}
+/* Dossiers: consistent editorial left rail / information-right reading width. */
+.aurel-dossier-sheet{width:min(1160px,100%);}
+.aurel-dossier-hero{min-height:0;padding:clamp(32px,3.2vw,49px) clamp(24px,4vw,54px) clamp(26px,3vw,42px);}
+.aurel-dossier-hero-copy{max-width:780px;}
+.aurel-dossier-scroll{padding-inline:clamp(24px,4vw,54px);}
+.aurel-dossier-block{grid-template-columns:minmax(190px,.72fr) minmax(0,1.95fr);gap:clamp(26px,4.2vw,76px);}
+.aurel-dossier-block-content{max-width:790px;}
+.aurel-dossier-contents{padding-block:18px;margin-bottom:3px;}
+.aurel-dossier-bottom{padding-inline:clamp(24px,4vw,54px);}
+/* Form chapter rail is secondary to the content; do not squash the fields. */
+.atelier-editor .atelier-form-contents{grid-template-columns:minmax(156px,181px) minmax(0,1fr);column-gap:clamp(23px,3.4vw,43px);}
+.atelier-editor .editor-grid{column-gap:clamp(18px,2.2vw,30px);row-gap:22px;}
+.atelier-editor .atelier-editor-section{padding-block:clamp(26px,2.5vw,36px);}
+@media(max-width:1330px){
+ .content-wrap .page-header{grid-template-columns:minmax(0,1fr);align-items:start;}
+ .content-wrap .page-actions{max-width:none;justify-content:flex-start;}
+ .atelier-bottom-grid{grid-template-columns:1fr;}
+ .atelier-projects,.atelier-priority{min-width:0;}
+}
+@media(max-width:1090px){
+ .atelier-hero{grid-template-columns:minmax(0,1fr) minmax(240px,.72fr);min-height:342px;}
+ .atelier-hero-photo{min-height:280px;}
+ .atelier-facts{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .atelier-facts>*:nth-child(2){border-right:0;}
+ .atelier-facts>*:nth-child(-n+2){border-bottom:1px solid var(--maison-layout-rule);}
+ .atelier-ledger-columns{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .atelier-ledger-columns>div:nth-child(2){border-right:0;}
+ .atelier-ledger-columns>div:nth-child(-n+2){border-bottom:1px solid var(--maison-layout-rule);}
+ .aurel-dossier-block{grid-template-columns:1fr;gap:18px;}
+ .aurel-dossier-block-heading p{max-width:var(--maison-layout-reading);}
+}
+@media(max-width:800px){
+ .main-area>.topbar{padding-inline:clamp(16px,4vw,25px);}
+ .content-wrap{padding:24px clamp(16px,4vw,25px) 38px;}
+ .content-wrap .page-header{padding-bottom:22px;margin-bottom:25px;}
+ .content-wrap .page-actions{max-width:100%;}
+ .atelier-hero{grid-template-columns:1fr;min-height:0;}
+ .atelier-hero-main{min-height:320px;}
+ .atelier-hero-photo{min-height:210px;}
+ .atelier-ledger-heading{align-items:flex-start;}
+ .atelier-editor .atelier-form-contents{grid-template-columns:1fr;}
+}
+@media(max-width:620px){
+ .content-wrap{padding:20px 16px 33px;}
+ .content-wrap .page-header{row-gap:19px;padding-bottom:20px;margin-bottom:23px;}
+ .content-wrap .page-header h1{font-size:clamp(30px,7.3vw,39px);max-width:100%;}
+ .content-wrap .page-header .page-subtitle{font-size:13.5px;}
+ .content-wrap .page-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+ .content-wrap .page-actions>.btn{min-width:0;width:100%;min-height:46px;}
+ .content-wrap .page-actions>.btn:only-child{grid-column:1/-1;}
+ .atelier-home{gap:16px;}
+ .atelier-hero-main{min-height:330px;padding:clamp(24px,5vw,30px);}
+ .atelier-hero h1,.atelier-hero-copy h1{font-size:clamp(37px,9.6vw,48px);}
+ .atelier-hero-photo{min-height:170px;}
+ .atelier-facts{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .atelier-fact-primary,.atelier-fact{padding:18px 15px;min-height:136px;}
+ .atelier-ledger-columns{padding:0;}
+ .atelier-ledger-columns>div{padding:19px 15px;}
+ .atelier-bottom-grid{grid-template-columns:1fr;gap:16px;margin-top:4px;}
+ .atelier-escrow{padding-top:10px;}
+ .aurel-dossier-hero{padding:35px 22px 25px;}
+ .aurel-dossier-scroll{padding-inline:22px;}
+ .aurel-dossier-block{gap:15px;padding:30px 0;}
+ .aurel-dossier-bottom{padding-inline:22px;}
+}
+@media(max-width:360px){
+ .content-wrap{padding-inline:13px;}
+ .content-wrap .page-actions{grid-template-columns:1fr;}
+ .atelier-ledger-columns{grid-template-columns:1fr;}
+ .atelier-ledger-columns>div{border-right:0;border-bottom:1px solid var(--maison-layout-rule);}
+ .atelier-ledger-columns>div:last-child{border-bottom:0;}
+ .atelier-facts{grid-template-columns:1fr 1fr;}
+ .atelier-fact-primary,.atelier-fact{padding:16px 12px;}
+ .aurel-dossier-scroll,.aurel-dossier-bottom{padding-inline:18px;}
+}
+@media(prefers-reduced-motion:reduce){.atelier-home *{scroll-behavior:auto;transition:none!important;}}
+/* Accessible tap areas for understated text actions (visual weight stays minimal). */
+.atelier-fact button,.atelier-section-heading button,.atelier-queue-button,
+.atelier-escrow button,.atelier-ledger-footer button{
+ min-height:44px;padding:9px 5px;margin-top:0;line-height:1.45;
+ border-radius:var(--maison-action-radius,14px)!important;
+}
+@media(max-width:620px){
+ .content-wrap .page-actions>.btn:nth-child(3):last-child{grid-column:1/-1;}
+ .atelier-ledger-footer button{justify-self:start;}
+}
+/* On very wide monitors the toolbar follows the same centered reading grid. */
+@media(min-width:801px){
+ .main-area>.topbar{padding-inline:max(var(--maison-layout-edge),calc((100% - var(--maison-layout-max))/2 + var(--maison-layout-edge)));}
+}
+
+/* V2.45 — Approved AUREL identity in the existing design system.
+   Use the supplied image unchanged: ivory surface preserves the original
+   black/champagne lettering against the deep-green navigation rail. */
+.sidebar .brand.aurel-brand-panel{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  box-sizing:border-box;height:108px;min-height:108px;padding:0 11px;
+  border-bottom:1px solid #d6c49e;
+  background:linear-gradient(115deg,#fffefa 0%,#ffffff 65%,#f8f5ee 100%);
+}
+.sidebar .aurel-brand-home{
+  display:flex;align-items:center;justify-content:center;
+  min-width:0;min-height:44px;width:100%;height:100%;
+  margin:0;padding:6px 2px;border:0;border-radius:0;
+  background:transparent;cursor:pointer;
+  transition:background-color 160ms ease;
+}
+.sidebar .aurel-brand-home:hover{background:rgba(221,207,177,.12);}
+.sidebar .aurel-brand-home:focus-visible{
+  outline:2px solid #7a633e;outline-offset:-4px;
+}
+.aurel-brand-wordmark{
+  display:block;width:100%;height:auto;max-height:90px;object-fit:contain;
+  user-select:none;
+}
+.sidebar .aurel-brand-panel .aurel-brand-wordmark{max-width:240px;}
+.sidebar .aurel-brand-panel .mobile-sidebar-close{display:none;}
+.aurel-auth-brand.aurel-auth-brand--image{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:min(290px,100%);max-width:100%;margin:0;
+  padding:0;background:#ffffff;
+  border:1px solid rgba(154,132,93,.18);
+}
+.aurel-auth-brand--image .aurel-brand-wordmark{
+  max-width:100%;max-height:none;aspect-ratio:3/1;object-fit:contain;
+}
+@media(max-width:800px){
+  .sidebar .brand.aurel-brand-panel{height:104px;min-height:104px;padding:0 8px;justify-content:flex-start;}
+  .sidebar .aurel-brand-home{width:calc(100% - 49px);padding:5px 0 5px 3px;justify-content:flex-start;}
+  .sidebar .aurel-brand-panel .aurel-brand-wordmark{max-width:222px;max-height:87px;}
+  .sidebar .aurel-brand-panel .mobile-sidebar-close{
+    display:grid;place-items:center;
+    position:absolute;right:9px;top:50%;z-index:1;
+    width:44px;height:44px;margin:0;transform:translateY(-50%);
+    border-radius:14px;background:#f8f7f1;border:1px solid #ded9ce;
+    color:#284c3a;
+  }
+  .aurel-auth-brand.aurel-auth-brand--image{width:min(245px,100%);}
+}
+@media(max-width:360px){
+  .sidebar .aurel-brand-panel .aurel-brand-wordmark{max-width:190px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .sidebar .aurel-brand-home{transition:none;}
+}
+@media(forced-colors:active){
+  .sidebar .aurel-brand-home{border:1px solid ButtonText;}
+}
+
+
+/* V2.64 — Auth typography, logo integration and self-service registration.
+ * Keep the approved artwork bit-for-bit unchanged. Multiply blend only removes
+ * the distracting white photographic matte against the ivory brand surfaces.
+ * Segoe UI provides complete Vietnamese glyph coverage on Windows/Edge. */
+.aurel-auth{font-family:"Segoe UI","Be Vietnam Pro",Arial,sans-serif;}
+.aurel-auth-story{background-color:#e1e2d8;}
+.aurel-auth-brand.aurel-auth-brand--image{
+ width:clamp(205px,19vw,262px);padding:0;border:0;border-radius:0!important;
+ background:transparent;box-shadow:none;
+}
+.aurel-auth-brand--image .aurel-brand-wordmark{mix-blend-mode:multiply;}
+.sidebar .aurel-brand-panel .aurel-brand-wordmark{mix-blend-mode:multiply;}
+.sidebar .brand.aurel-brand-panel{
+ background:#f8f7f1;border-bottom:1px solid #d9d5c9;
+}
+.aurel-auth-story h1,.aurel-auth-story h1 em,
+.aurel-auth-heading h2,.aurel-auth-help h3{
+ font-family:"Segoe UI","Be Vietnam Pro",Arial,sans-serif;
+ font-synthesis:none;letter-spacing:-.032em;
+}
+.aurel-auth-story h1{font-weight:620;line-height:1.16;font-size:clamp(39px,4.15vw,61px);}
+.aurel-auth-story h1 em{font-weight:470;font-size:clamp(36px,3.9vw,57px);line-height:1.24;letter-spacing:-.028em;}
+.aurel-auth-heading h2{font-size:clamp(29px,2.45vw,37px);font-weight:650;line-height:1.22;}
+.aurel-auth-story-main>p{font-size:15px;line-height:1.73;color:#435247;}
+.aurel-auth-heading>p,.aurel-auth-hint,.aurel-auth-help>p{font-size:14px;line-height:1.68;color:#526057;}
+.aurel-auth-kicker,.aurel-auth-section-no{font-size:11px;letter-spacing:.12em;}
+.aurel-auth-story-meta,.aurel-auth-story-foot,.aurel-auth-access-foot{font-size:11px;letter-spacing:.055em;}
+.aurel-auth-input input{font-size:15px;min-height:49px;}
+.aurel-auth-input input::placeholder{color:#69746a;opacity:1;}
+.aurel-auth-switch{margin:26px 0 22px;gap:6px;}
+.aurel-auth-switch button{min-height:48px;padding:10px 12px 12px;font-size:14px;font-weight:600;}
+.aurel-auth-submit{font-size:14px;font-weight:650;min-height:52px;}
+.aurel-auth-reveal,.aurel-auth-textbutton{font-size:13px;min-height:40px;}
+.aurel-auth-paper{max-width:470px;margin:35px auto;}
+.aurel-auth-access{padding-top:25px;padding-bottom:25px;}
+.aurel-auth-after-register{margin-top:6px;align-self:center;text-decoration:underline;text-underline-offset:4px;}
+.aurel-access-status.pending_review{color:#755621;background:#f8edce;}
+.aurel-access-actions .aurel-access-approve{border-color:#66816b;color:#234838;background:#f2f7ef;}
+@media(max-width:850px){
+ .aurel-auth-story h1{font-size:clamp(28px,5.1vw,41px);}
+ .aurel-auth-story h1 em{font-size:clamp(27px,4.8vw,39px);}
+ .aurel-auth-story-main{margin-top:16px;}
+ .aurel-auth-brand.aurel-auth-brand--image{width:210px;}
+ .aurel-auth-paper{margin:18px auto 32px;}
+}
+@media(max-width:620px){
+ .aurel-auth-story{min-height:220px;max-height:220px;}
+ .aurel-auth-story h1{font-size:27px;margin-top:8px;}
+ .aurel-auth-story h1 em{font-size:25px;line-height:1.2;}
+ .aurel-auth-kicker{font-size:10px;}
+ .aurel-auth-heading h2{font-size:28px;}
+ .aurel-auth-access{padding-inline:20px;}
+ .aurel-auth-input input{font-size:16px;}
+ .aurel-auth-brand.aurel-auth-brand--image{width:177px;}
+}
+
+/* Shared Vietnamese typography: one final alias, not another stylesheet. */
+:root{
+ --aurel-25-ui:"Segoe UI","Be Vietnam Pro","Noto Sans",Arial,sans-serif;
+ --aurel-25-display:"Segoe UI","Be Vietnam Pro","Noto Sans",Arial,sans-serif;
+}
+:is(.aurel-workspace-context>strong,.aurel-account-popover-head strong,.sidebar .brand-name){
+ font-family:var(--aurel-25-display);letter-spacing:-.018em;
+}
+
+
+/* V2.67: property entitlement preview, not an actionable management route.
+   Financial, staff and admin features remain completely absent for viewers. */
+.aurel-ownership-preview .nav-item.aurel-locked-feature:disabled {
+ cursor:not-allowed;opacity:1;color:#697b72;background:rgba(46,74,57,.035);
+ border:1px solid rgba(46,74,57,.11);box-shadow:none;
+}
+.aurel-ownership-preview .aurel-locked-feature:disabled svg:last-child {flex:none;color:#8e795b;}
+.aurel-ownership-preview-note {font-size:11px;line-height:1.65;color:#7c887d;padding:3px 13px 0;margin:4px 0 0;}
+
+/* V2.68: one owner-scoped panel; no financial or administrator controls in viewer UI. */
+.aurel-owner-admin-links{flex:1 1 100%;padding:9px 0 2px;border-top:1px solid rgba(49,88,69,.12)}
+.aurel-owner-admin-links summary{cursor:pointer;font-size:12px;color:#315845;padding:7px 2px;min-height:36px}
+.aurel-owner-admin-links[open]{display:flex;flex-wrap:wrap;align-items:center;gap:9px}
+.aurel-owner-admin-links>small{width:100%;color:#64786c;font-size:12px}
+.aurel-owner-link-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(49,88,69,.18);border-radius:12px;padding:5px 9px;color:#315845;font-size:12px}
+.aurel-owner-link-chip button{border:0;background:none;text-decoration:underline;color:#744f41;cursor:pointer}
+.aurel-owner-link-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.aurel-owner-link-actions select{min-height:44px;min-width:190px;max-width:100%;padding:8px;border:1px solid #bdc8bc;border-radius:12px;background:#fff;color:#253d30}
+.aurel-owner-link-actions button{min-height:44px;padding:8px 13px;border-radius:12px;border:0;background:#315845;color:#fff;cursor:pointer}
+.aurel-owner-link-actions button:disabled{opacity:.48;cursor:not-allowed}
+.aurel-owned-asset-page{display:grid;gap:15px}
+.aurel-owned-asset-card{display:grid;gap:10px;padding:17px;border:1px solid rgba(49,88,69,.14);border-radius:15px}
+.aurel-owned-asset-card strong{font-size:17px}
+.aurel-owned-asset-card p{margin:4px 0;color:#64786c}
+.aurel-owned-asset-card small{color:#64786c}
+.aurel-owned-asset-card label{font-size:13px;font-weight:600}
+.aurel-owned-asset-card textarea{width:100%;min-height:88px;resize:vertical;padding:12px;border-radius:12px;border:1px solid #bdc8bc;font:inherit}
+.aurel-owned-asset-card>.btn{justify-self:start;min-height:44px}
+@media(max-width:600px){.aurel-owner-link-actions,.aurel-owner-link-actions select,.aurel-owner-link-actions button{width:100%}.aurel-owned-asset-card>.btn{width:100%}}
+
+/* V2.83: understated owner proposal feedback; remain inside Maison palette. */
+.aurel-owner-correction .aurel-proposal-current{font-size:12px;line-height:1.6;color:#5b7164;margin:4px 0}
+.aurel-owner-correction .aurel-proposal-current strong{font-size:12px;color:#315845;font-weight:650;overflow-wrap:anywhere}
+.aurel-owner-correction .aurel-proposal-hint{display:block;font-size:12px;line-height:1.5;color:#8b5a43;overflow-wrap:anywhere}
+@media(max-width:600px){.aurel-owner-correction .field-input,.aurel-owner-correction .btn{width:100%;max-width:100%;min-height:44px}}
+
+/* Recovery and import controls preserve the existing Maison surface. */
+.aurel-import-fields{border:0;margin:0;padding:0;min-width:0;width:100%}
+.aurel-import-fields:disabled .import-picker{cursor:wait;opacity:.65}
+.aurel-recovery{padding:32px 20px;text-align:center;gap:16px}
+.aurel-recovery h1{font-size:clamp(22px,4vw,32px);line-height:1.3;margin:0;max-width:24ch}
+.aurel-recovery p{max-width:52ch;line-height:1.7;margin:0;overflow-wrap:anywhere}

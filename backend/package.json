@@ -1,0 +1,19 @@
+{
+  "name": "@aurel/backend",
+  "version": "2.86.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../.env --watch src/index.js",
+    "start": "node --env-file-if-exists=../.env src/index.js",
+    "db:migrate": "node --env-file-if-exists=../.env src/migrate.js",
+    "db:import-demo": "node --env-file-if-exists=../.env src/import-demo.js",
+    "doctor": "node --env-file-if-exists=../.env src/doctor.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "optionalDependencies": {
+    "pg": "^8.13.1",
+    "exceljs": "^4.4.0"
+  }
+}
