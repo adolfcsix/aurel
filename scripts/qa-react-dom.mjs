@@ -25,11 +25,12 @@ try{
  await build({stdin:{contents:`export {default as ImportPanel} from '../frontend/src/components/ImportPanel.jsx';
  export {default as AppRecovery} from '../frontend/src/components/AppRecovery.jsx';
  export {OwnerChangeForm} from '../frontend/src/components/OwnerChangeRequests.jsx';
- export {default as App} from '../frontend/src/App.jsx';`,resolveDir:path.join(root,'scripts')},
+ export {default as App} from '../frontend/src/App.jsx';
+ export {default as AuthPortal} from '../frontend/src/components/AuthPortal.jsx';`,resolveDir:path.join(root,'scripts')},
   outfile:output,bundle:true,platform:'node',format:'esm',packages:'external',logLevel:'silent'});
  const React=await import('react');const {act}=React;
  const {createRoot}=await import('react-dom/client');
- const {ImportPanel,AppRecovery,OwnerChangeForm,App}=await import(pathToFileURL(output));
+ const {ImportPanel,AppRecovery,OwnerChangeForm,App,AuthPortal}=await import(pathToFileURL(output));
  const host=document.getElementById('root');reactRoot=createRoot(host);
  const render=async(element)=>act(async()=>reactRoot.render(element));
  const click=async(text)=>{const b=[...host.querySelectorAll('button')].find(x=>x.textContent.trim()===text);assert.ok(b,'Missing button '+text);await act(async()=>b.click());return b};
@@ -38,6 +39,53 @@ try{
   await act(async()=>{Object.getOwnPropertyDescriptor(proto,'value').set.call(element,value);element.dispatchEvent(new Event('input',{bubbles:true}))});
  };
  const unloadBlocked=()=>{const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);return event.defaultPrevented};
+ // Exercise authentication events independently of layout and live credentials.
+ let authChecks=0,loginCalls=0,releaseLogin,registered=null;
+ await render(React.createElement(AuthPortal,{onLogin:async(username,password)=>{
+  assert.equal(username,'qa.user');assert.equal(password,'PrivateLogin123');loginCalls++;
+  await new Promise(resolve=>releaseLogin=resolve);
+ },onRegistered:async response=>{registered=response}}));
+ assert.doesNotMatch(host.textContent,/Chỉn chu|từng quyết định|SỰ TIN CẬY|Không gian tài khoản bảo mật/);authChecks++;
+ await input('input[autocomplete="username"]','qa.user');
+ await input('input[autocomplete="current-password"]','PrivateLogin123');
+ await click('Hiện');assert.equal(host.querySelector('input[autocomplete="current-password"]').type,'text');authChecks++;
+ // Select the explicit form submit event, independently of the navigation label.
+ await act(async()=>host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true})));
+ assert.equal(loginCalls,1);assert.equal(host.querySelector('fieldset').disabled,true);
+ await act(async()=>host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true})));
+ assert.equal(loginCalls,1);await click('Đăng ký');assert.equal(host.querySelector('input[autocomplete="name"]'),null);authChecks++;
+ await act(async()=>releaseLogin());
+ await click('Đăng ký');
+ assert.equal(host.querySelectorAll('input[type="password"]').length,2);
+ assert.equal([...host.querySelectorAll('input[autocomplete="new-password"]')].every(x=>!x.value),true);authChecks++;
+ await input('input[autocomplete="name"]','QA Account');
+ await input('input[autocomplete="username"]','qa.registration');
+ const newFields=[...host.querySelectorAll('input[autocomplete="new-password"]')];
+ await input(`[id="${newFields[0].id}"]`,'NewPrivatePassword123');
+ await input(`[id="${newFields[1].id}"]`,'OtherPrivatePassword123');
+ let registerCalls=0;
+ globalThis.fetch=async(_url,options)=>{
+  registerCalls++;assert.deepEqual(JSON.parse(options.body),{username:'qa.registration',name:'QA Account',password:'NewPrivatePassword123'});
+  return {ok:true,json:async()=>({user:{role:'viewer',id:'qa-account'},csrf:'qa-session'})};
+ };
+ await click('Tạo tài khoản');assert.ok(host.querySelector('[role="alert"]'));assert.equal(registerCalls,0);authChecks++;
+ await input(`[id="${newFields[1].id}"]`,'NewPrivatePassword123');
+ await click('Tạo tài khoản');assert.equal(registered.user.role,'viewer');assert.equal(registered.csrf,'qa-session');authChecks++;
+ await click('Đăng nhập');await click('Quên mật khẩu?');
+ assert.ok(host.querySelector('.aurel-entry-help'));assert.equal(host.querySelector('form'),null);
+ await click('Dùng mật khẩu tạm');assert.equal(host.querySelectorAll('input[type="password"]').length,3);authChecks++;
+ await input('input[autocomplete="current-password"]','TemporaryPassword123');
+ const activateFields=[...host.querySelectorAll('input[autocomplete="new-password"]')];
+ for(const element of activateFields)await input(`[id="${element.id}"]`,'ActivatedPassword123');
+ globalThis.fetch=async(url,options)=>{
+  assert.equal(url,'/api/auth/activate');assert.equal(JSON.parse(options.body).temporaryPassword,'TemporaryPassword123');
+  return {ok:true,json:async()=>({activated:true})};
+ };
+ await click('Lưu mật khẩu');assert.ok(host.querySelector('[role="status"]'));assert.equal(host.querySelector('input[autocomplete="current-password"]').value,'');authChecks++;
+ await render(React.createElement(AuthPortal,{key:'login-error',onLogin:async()=>{throw Error('Tài khoản hoặc mật khẩu không đúng.')}}));
+ await input('input[autocomplete="username"]','qa.user');await input('input[autocomplete="current-password"]','PrivateLogin123');
+ await act(async()=>host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true})));
+ assert.ok(host.querySelector('[role="alert"]'));assert.equal(host.querySelector('fieldset').disabled,false);authChecks++;
  await render(React.createElement(ImportPanel,{onImported:async()=>true,canCommit:()=>true}));
  await click('CSV UTF-8');await input('.import-textarea','Mã căn\nQA-DOM-1');
  assert.equal(unloadBlocked(),true,'CSV draft needs unload protection');checks++;
@@ -108,7 +156,7 @@ try{
   }
  }finally{console.error=savedConsole}
  assert.deepEqual(errors,[],'React should not emit runtime errors or missing-key warnings');
- console.log(`PASS React/DOM: ${checks} behavioral checks and ${screens} permitted screens across five roles — import freeze/reset/uncertain lock, draft guards, accessible crash recovery. Browser geometry, physical devices and PostgreSQL NOT VERIFIED.`);
+ console.log(`PASS React/DOM: ${authChecks} account checks, ${checks} workspace behavioral checks and ${screens} permitted screens across five roles. Browser geometry, physical devices and PostgreSQL NOT VERIFIED.`);
 }finally{
  globalThis.fetch=originalFetch;
  if(reactRoot){const {act}=await import('react');await act(async()=>reactRoot.unmount())}

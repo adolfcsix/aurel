@@ -7,7 +7,7 @@ test('V2.65 the register button enters the app directly as viewer',()=>{
  assert.match(auth,/onClick=\{\(\)=>changeMode\('register'\)\}/);
  assert.match(auth,/name:name\.trim\(\),password:newPassword/);
  assert.match(auth,/await onRegistered\?\.\(response\)/);
- assert.match(auth,/Tạo tài khoản & vào AUREL/);
+ assert.match(auth,/Tạo tài khoản/);
  assert.match(auth,/newPassword!==confirmPassword/);
  assert.match(app,/onRegistered=\{registered\}/);
  assert.doesNotMatch(auth,/Đã gửi đăng ký/);

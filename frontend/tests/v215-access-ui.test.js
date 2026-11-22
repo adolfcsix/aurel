@@ -11,7 +11,7 @@ test('auth portal offers personal-password registration and legacy activation',(
  assert.match(portal,/\/auth\/register/);
  assert.match(portal,/Kích hoạt tài khoản/);
  assert.match(portal,/\/auth\/activate/);
- assert.match(portal,/Đăng ký xong vào ngay/);
+ assert.match(portal,/await onRegistered\?\.\(response\)/);
 });
 test('activation requires matching new passwords and visibly handles errors',()=>{assert.match(portal,/newPassword!==confirmPassword/);assert.match(portal,/role="alert"/);assert.match(portal,/autoComplete="new-password"/);assert.match(portal,/aria-label=\{showPassword/)});
 test('access manager has search, status filter and explicit reset action',()=>{

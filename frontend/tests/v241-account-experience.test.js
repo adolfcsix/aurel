@@ -58,7 +58,7 @@ test('v241 login mode changes clear confidential fields and maintain clear copy'
  assert.match(source,/setShowPassword\(false\);setShowNewPassword\(false\)/);
  assert.match(source,/if\(!username\.trim\(\)\)/);
  assert.match(source,/activation\?'Kích hoạt tài khoản'/);
- assert.match(source,/registration\?'Tạo tài khoản & vào AUREL'/);
+ assert.match(source,/registration\?'Tạo tài khoản'/);
  assert.doesNotMatch(source,/Thử phím|Nhấn Escape|Cách thử/);
 });
 test('v241 polished account buttons reuse existing final CSS and 14px silhouette',()=>{

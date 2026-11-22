@@ -673,3 +673,51 @@ body,.main-area {background:var(--maison-33-shell);color:var(--maison-33-ink);}
 .aurel-recovery{padding:32px 20px;text-align:center;gap:16px}
 .aurel-recovery h1{font-size:clamp(22px,4vw,32px);line-height:1.3;margin:0;max-width:24ch}
 .aurel-recovery p{max-width:52ch;line-height:1.7;margin:0;overflow-wrap:anywhere}
+
+/* Account entrance: an architectural plate and a restrained, shared form. */
+.aurel-auth.aurel-entry{--entry-paper:#faf9f6;--entry-ink:#263b32;--entry-muted:#656a61;--entry-line:#d7d4ca;min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--entry-paper);color:var(--entry-ink);font-family:"Segoe UI","Be Vietnam Pro",Arial,sans-serif;}
+.aurel-entry *{box-sizing:border-box;}
+.aurel-entry-gallery{min-width:0;background:#eae7df;padding:38px clamp(28px,4vw,70px) 30px;display:flex;flex-direction:column;border-right:1px solid #dcd8cf;}
+.aurel-entry .aurel-auth-brand.aurel-auth-brand--image{width:192px;max-width:100%;padding:0;background:none;border:0;border-radius:0;box-shadow:none;position:static;}
+.aurel-entry .aurel-auth-brand--image .aurel-brand-wordmark{width:100%;height:auto;display:block;mix-blend-mode:multiply;}
+.aurel-entry-portrait{position:relative;isolation:isolate;flex:1;min-height:380px;max-height:650px;width:100%;margin:34px 0 28px;border:1px solid #c7c4b9;background:#d8d6cd;overflow:hidden;}
+.aurel-entry-portrait img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:50% 40%;filter:saturate(.55) contrast(.94);}
+.aurel-entry-signature{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.aurel-entry-signature p{font:400 clamp(23px,2.15vw,32px)/1.25 Georgia,"Times New Roman",serif;margin:0;letter-spacing:-.025em;color:#263b32;}
+.aurel-entry-signature span{font-size:9px;font-weight:600;line-height:1.5;letter-spacing:.15em;color:#586257;}
+.aurel-entry-access{min-width:0;min-height:100dvh;position:relative;display:flex;flex-direction:column;justify-content:center;padding:56px clamp(28px,5vw,80px) 62px;}
+.aurel-entry-sheet{width:min(100%,392px);min-width:0;margin:auto;}
+.aurel-entry .aurel-auth-switch{display:flex;align-items:center;gap:30px;grid-template-columns:none;border:0;border-bottom:1px solid var(--entry-line);border-radius:0;background:transparent;margin:0 0 38px;padding:0;box-shadow:none;}
+.aurel-entry .aurel-auth-switch button{position:relative;flex:0 0 auto;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;box-shadow:none;min-height:48px;margin-bottom:-1px;padding:10px 0 13px;font-size:13px;font-weight:500;color:var(--entry-muted);line-height:1.4;}
+.aurel-entry .aurel-auth-switch button.active{border-color:#7d735a;color:var(--entry-ink);font-weight:650;background:transparent;box-shadow:none;}
+.aurel-entry-heading{margin:0 0 30px;}
+.aurel-entry-heading>span{display:block;font-size:9px;font-weight:600;letter-spacing:.17em;line-height:1.6;color:#6c6c60;margin-bottom:12px;}
+.aurel-entry-heading h1{font:400 clamp(36px,3.35vw,49px)/1.18 Georgia,"Times New Roman",serif;letter-spacing:-.045em;margin:0;color:var(--entry-ink);text-wrap:balance;}
+.aurel-entry .aurel-auth-form{display:flex;flex-direction:column;gap:0;margin:0;}
+.aurel-entry-fields{min-width:0;margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:21px;}
+.aurel-entry-field{min-width:0;display:flex;flex-direction:column;gap:9px;}
+.aurel-entry .aurel-entry-field label{margin:0;font-size:13px;font-weight:600;line-height:1.4;color:#354339;}
+.aurel-entry .aurel-auth-label-row{margin:0;min-height:20px;align-items:center;gap:12px;}
+.aurel-entry .aurel-auth-label-row .aurel-auth-textbutton{min-height:44px;padding:0;font-size:12px;line-height:1.4;}
+.aurel-entry .aurel-auth-input{width:100%;min-height:54px;padding:0 15px;gap:8px;border:1px solid var(--entry-line);border-radius:14px;background:#fffefb;box-shadow:none;transition:border-color .18s,box-shadow .18s;}
+.aurel-entry .aurel-auth-input:focus-within{border-color:#788575;box-shadow:0 0 0 3px #385c4210;}
+.aurel-entry .aurel-auth-input input{width:100%;min-width:0;min-height:52px;height:52px;margin:0;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent;font:400 16px/1.4 "Segoe UI","Be Vietnam Pro",Arial,sans-serif;color:var(--entry-ink);}
+.aurel-entry .aurel-auth-input:has(input:disabled){background:#f1f0ea;}
+.aurel-entry .aurel-auth-reveal{min-width:44px;min-height:44px;margin-right:-5px;padding:8px 4px;font-size:12px;font-weight:500;color:#596350;border-radius:9px;}
+.aurel-entry .aurel-entry-field small{font-size:11px;line-height:1.5;color:var(--entry-muted);margin:0;}
+.aurel-entry .aurel-auth-textbutton{background:transparent;border:0;color:#62664f;font-size:12px;font-weight:500;text-decoration:underline;text-decoration-color:#b0ad9d;text-underline-offset:4px;}
+.aurel-entry .aurel-auth-submit{margin:27px 0 0;min-height:54px;width:100%;padding:0 19px;border-radius:14px;border:1px solid #293f33;background:#293f33;color:#fffef8;box-shadow:inset 0 1px #ffffff0a;transform:none;font-size:14px;font-weight:600;letter-spacing:0;line-height:1.4;}
+.aurel-entry .aurel-auth-submit:hover:not(:disabled){background:#1d3328;border-color:#1d3328;transform:none;box-shadow:none;}
+.aurel-entry button:focus-visible{outline:2px solid #697e60;outline-offset:4px;}
+.aurel-entry button:disabled{cursor:wait;opacity:.6;}
+.aurel-entry .aurel-auth-error,.aurel-entry .aurel-auth-success{margin:18px 0 0;padding:12px 14px;border-radius:12px;font-size:12px;line-height:1.6;}
+.aurel-entry-note{margin:17px 0 0;font-size:11px;line-height:1.6;color:var(--entry-muted);}
+.aurel-entry .aurel-entry-back{min-height:44px;margin:18px auto 0;align-self:center;display:block;padding:10px 6px;}
+.aurel-entry-help>p{font-size:14px;line-height:1.7;color:var(--entry-muted);margin:0;max-width:32ch;}
+.aurel-entry-footer{position:absolute;bottom:26px;left:28px;right:28px;text-align:center;font-size:10px;line-height:1.5;letter-spacing:.06em;color:#76786d;}
+@media(min-width:1600px){.aurel-entry-gallery{padding-left:max(70px,calc((100vw - 1440px)/2));}.aurel-entry-portrait{max-width:610px;}.aurel-entry-signature{max-width:610px;}}
+@media(max-width:1000px){.aurel-auth.aurel-entry{grid-template-columns:minmax(0,.85fr) minmax(0,1fr);}.aurel-entry-gallery{padding:32px 28px 26px;}.aurel-entry-access{padding-inline:36px;}.aurel-entry-signature{gap:8px;flex-direction:column;}.aurel-entry-portrait{min-height:380px;}}
+@media(max-width:760px){.aurel-auth.aurel-entry{display:flex;flex-direction:column;min-height:100dvh;}.aurel-entry-gallery{display:block;padding:27px 24px 0;border:0;background:var(--entry-paper);}.aurel-entry .aurel-auth-brand.aurel-auth-brand--image{width:150px;}.aurel-entry-portrait,.aurel-entry-signature{display:none;}.aurel-entry-access{flex:1;min-height:0;justify-content:flex-start;padding:26px 24px 72px;}.aurel-entry-sheet{margin:0 auto;max-width:440px;}.aurel-entry .aurel-auth-switch{margin-bottom:28px;gap:28px;}.aurel-entry-heading{margin-bottom:26px;}.aurel-entry-heading h1{font-size:38px;}.aurel-entry-heading>span{font-size:9px;}.aurel-entry-footer{position:static;margin:38px auto -42px;width:100%;}.aurel-entry-fields{gap:19px;}}
+@media(max-width:380px){.aurel-entry-gallery{padding-inline:20px;}.aurel-entry-access{padding-inline:20px;}.aurel-entry-heading h1{font-size:35px;}}
+@media(prefers-reduced-motion:reduce){.aurel-entry .aurel-auth-input{transition:none;}}
+@media(forced-colors:active){.aurel-entry .aurel-auth-switch button.active{border-color:Highlight;}.aurel-entry .aurel-auth-input,.aurel-entry .aurel-auth-submit{border:1px solid ButtonText;}}

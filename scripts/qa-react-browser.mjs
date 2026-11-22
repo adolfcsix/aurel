@@ -191,7 +191,7 @@ async function browserOwnerJourney(cdp,url,adminPassword,unitId){
  // Self-registration must create the session without asking admin for approval.
  await cdp.navigate(url);
  await cdp.until('Boolean(document.querySelector(".aurel-auth-submit"))','React registration entry');
- assert.ok(await cdp.clickByText('.aurel-auth-switch button','Đăng ký tài khoản'),'Registration switch is missing');
+ assert.ok(await cdp.clickByText('.aurel-auth-switch button','Đăng ký'),'Registration switch is missing');
  await cdp.until('Boolean(document.querySelector("input[autocomplete=name]"))','registration fields');
  const signupPassword='OwnerBrowser-QA-2026!';
  await cdp.textInput('input[autocomplete="name"]','QA Property Owner');
@@ -200,7 +200,7 @@ async function browserOwnerJourney(cdp,url,adminPassword,unitId){
  assert.equal(pwIds.length,2,'Registration must contain password and confirmation');
  await cdp.textInput(`[id=${JSON.stringify(pwIds[0])}]`,signupPassword);
  await cdp.textInput(`[id=${JSON.stringify(pwIds[1])}]`,signupPassword);
- assert.ok(await cdp.clickByText('.aurel-auth-submit','Tạo tài khoản & vào AUREL'),'Registration submit not found');
+ assert.ok(await cdp.clickByText('.aurel-auth-submit','Tạo tài khoản'),'Registration submit not found');
  await cdp.until('Boolean(document.querySelector(".app-shell .content-wrap"))','auto-login after registration');
  const ownerMe=await browserApi(cdp,'/auth/me');
  assert.equal(ownerMe.status,200,'Registered owner must receive valid session');

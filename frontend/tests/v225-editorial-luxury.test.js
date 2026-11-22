@@ -30,7 +30,7 @@ test('V2.25 dashboard uses precise Vietnamese editorial copy, without marketing 
 test('V2.65 auth offers immediate viewer access with a private portfolio boundary',()=>{
  const auth=read('components/AuthPortal.jsx');
  assert.match(auth,/Kích hoạt tài khoản/);
- assert.match(auth,/Đăng ký xong vào ngay/);
+ assert.match(auth,/await onRegistered\?\.\(response\)/);
  assert.match(auth,/<BrandWordmark\/>/); // V2.47: official approved logo replaces the old CSS lettering.
  assert.match(auth,/Đăng nhập AUREL/);
 });

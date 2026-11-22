@@ -72,6 +72,6 @@ test('V2.70: disposable HTTP smoke and live React script explicitly cover owners
  assert.match(smoke,/Stale approval must not overwrite apartment/);
  assert.match(smoke,/\/auth\/register/);
  assert.match(browser,/aurel-owner-correction-inbox/); // Manager approves through rendered React inbox.
- assert.match(browser,/Đăng ký tài khoản/); // Browser signs up through the rendered React form, not direct fetch.
+ assert.match(browser,/Registration switch is missing/); // Browser signs up through the rendered React form, not direct fetch.
  assert.match(browser,/owner React|live owner React|PASS live owner React/);
 });

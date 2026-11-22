@@ -1,3 +1,11 @@
+# Kiểm tra trang tài khoản
+
+Ngày 22/11/2026: thay bố cục đăng nhập/đăng ký, bỏ khẩu hiệu và nội dung lặp. Giữ logo được chọn, đăng ký vào ngay bằng quyền Người xem, hỗ trợ mật khẩu tạm và các quy tắc xác thực hiện có. Khóa biểu mẫu và đổi chế độ khi đang gửi; không xóa dữ liệu khi bấm lại chế độ đang mở.
+
+Kiểm tra React/DOM: 9 tình huống tài khoản (nội dung rút gọn, hiện/ẩn mật khẩu, khóa gửi lặp, chuyển chế độ xóa mật khẩu, mật khẩu xác nhận, đăng ký nhận phiên, trợ giúp, kích hoạt, lỗi đăng nhập); 8 tình huống workspace và 51 màn hình theo quyền. Bộ kiểm tra trình duyệt đã cập nhật nhãn thao tác mới nhưng chưa chạy được vì Chromium bị chặn tạo Unix socket. Chưa chứng nhận bố cục thực hoặc thiết bị thật.
+
+---
+
 # AUREL — Hoàn thiện và ổn định hành vi
 
 Ngày kiểm tra: 17/11/2026.
