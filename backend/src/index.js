@@ -73,7 +73,7 @@ app.post('/api/auth/login',async(req,res)=>{
  const loginKey=req.ip||'local';loginThrottle.assertAllowed(loginKey);const username=text(req.body?.username,100).toLowerCase(),password=String(req.body?.password||'');
  const db=await getDb(),user=db.users.find(u=>(accountActive(u)||(u.status==='pending'&&u.role==='viewer'&&!u.mustChangePassword))&&u.username.toLowerCase()===username);
  if(!user||!verifyPassword(password,user.passwordHash)){loginThrottle.recordFailure(loginKey);fail('Thông tin đăng nhập không đúng',401);}
- if(user.mustChangePassword===true)fail('Tài khoản cần kích hoạt lần đầu. Chọn Kích hoạt tài khoản và sử dụng mật khẩu tạm thời.',403);
+ if(user.mustChangePassword===true)fail('Chọn “Dùng mật khẩu tạm” để đặt mật khẩu mới.',403);
  const session=await updateDb(d=>{
   const current=d.users.find(u=>u.id===user.id);
   // A password reset, account lock, username rename or archival might have
@@ -187,13 +187,32 @@ function readImportMapping(req){
  try{return JSON.parse(raw)}catch{fail('Cấu hình ánh xạ cột không phải JSON',400)}
 }
 function readSheet(req,wb){
- const name=req.headers['x-aurel-sheet'];
+ const encoded=req.headers['x-aurel-sheet-encoded'];
+ let name=req.headers['x-aurel-sheet'];
+ if(encoded!==undefined){
+  if(typeof encoded!=='string'||encoded.length>1080)fail('Tên trang tính không hợp lệ');
+  try{name=decodeURIComponent(encoded)}catch{fail('Tên trang tính không hợp lệ')}
+ }
  if(typeof name!=='string'||!name||name.length>120)fail('Chưa chọn trang tính');
  return wb.worksheets.find(ws=>ws.name===name);
 }
 app.post('/api/import/units/xlsx/inspect',xlsxBody,async(req,res)=>{
  permit(req,'unit.write');const wb=await readWorkbook(req.body);
- const sheets=inspectWorkbook(wb),first=wb.worksheets[0];res.json({...sheets,selected:first.name,...inspectSheet(worksheetToRows(first))});
+ const sheets=inspectWorkbook(wb);
+ let firstError;
+ for(const sheet of wb.worksheets){
+  let inspected;
+  try{inspected=inspectSheet(worksheetToRows(sheet))}
+  catch(error){
+   if(error.status!==400)throw error;
+   firstError??=error;
+   continue;
+  }
+  if(inspected.rows===0)continue;
+  return res.json({...sheets,selected:sheet.name,...inspected});
+ }
+ if(firstError)throw firstError;
+ fail('Không có trang tính chứa dữ liệu');
 });
 app.post('/api/import/units/xlsx/sheet',xlsxBody,async(req,res)=>{
  permit(req,'unit.write');const wb=await readWorkbook(req.body),ws=readSheet(req,wb);

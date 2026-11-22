@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {pendingReminderCount,recentReportPeriods} from '../src/lib/finance.js';
+import {pendingReminderCount,pendingReminderItems,recentReportPeriods} from '../src/lib/finance.js';
 import {reminderQueue} from '../../backend/src/domain.js';
 
 const today='2026-11-12';
@@ -25,6 +25,7 @@ test('V2.70: reminder badge ignores missing due date and exactly matches backend
  const data=makeState();
  const queue=reminderQueue(data,today);
  assert.deepEqual(queue.map(row=>row.id),['overdue','due']);
+ assert.deepEqual(pendingReminderItems(data,today).map(({id,left})=>({id,left})),queue.map(({id,left})=>({id,left})));
  assert.equal(pendingReminderCount(data,today),queue.length);
  assert.equal(pendingReminderCount({...data,schedules:[data.schedules[0]]},today),0);
 });

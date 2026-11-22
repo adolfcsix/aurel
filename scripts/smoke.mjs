@@ -82,12 +82,14 @@ async function runner(){
  if(process.argv.includes('--xlsx')){
  // Direct XLSX workflow: generate a small workbook and exercise the actual binary API.
  const {default:ExcelJS}=await import('exceljs');
- const workbook=new ExcelJS.Workbook();const worksheet=workbook.addWorksheet('Căn hộ');
+ const workbook=new ExcelJS.Workbook();
+ workbook.addWorksheet('Hướng dẫn').addRow(['Chọn trang Căn hộ']);
+ const worksheet=workbook.addWorksheet('Căn hộ');
  worksheet.addRow(['Mã căn','Dự án','Tòa nhà','Giá thuê','Nội thất']);
  worksheet.addRow(['SMOKE-XLSX-1','Smoke Test Estate','T1',9500000,'Đầy đủ']);
  const xlsxBytes=Buffer.from(await workbook.xlsx.writeBuffer());
  const xlsxHeaders={'Content-Type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'X-CSRF-Token':csrf,Cookie:cookie,'X-Aurel-Sheet':'Căn hộ',
+  'X-CSRF-Token':csrf,Cookie:cookie,'X-Aurel-Sheet-Encoded':encodeURIComponent('Căn hộ'),
   'X-Aurel-Mapping':JSON.stringify({code:0,project:1,building:2,rent:3,interior:4})};
  async function xlsxRequest(endpoint,headers,expected){
   const response=await fetch(base+'/api/import/units/xlsx/'+endpoint,{method:'POST',headers,body:xlsxBytes});
@@ -95,6 +97,11 @@ async function runner(){
   if(response.status!==expected)throw Error(`XLSX ${endpoint}: expected ${expected}, got ${response.status}: ${JSON.stringify(json)}`);
   return json;
  }
+ const xlsxInspection=await xlsxRequest('inspect',xlsxHeaders,200);
+ assert.equal(xlsxInspection.selected,'Căn hộ');
+ await xlsxRequest('sheet',{...xlsxHeaders,'X-Aurel-Sheet-Encoded':'%ZZ'},400);
+ const selectedSheet=await xlsxRequest('sheet',xlsxHeaders,200);
+ assert.equal(selectedSheet.headers[0],'Mã căn');
  const xlsxPreview=await xlsxRequest('preview',xlsxHeaders,200);
  check(xlsxPreview.previewToken&&xlsxPreview.digest,'XLSX preview must return signed confirmation');
  await xlsxRequest('commit',{...xlsxHeaders,'X-Aurel-Digest':xlsxPreview.digest},409);

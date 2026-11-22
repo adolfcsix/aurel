@@ -87,6 +87,23 @@ try{
  await act(async()=>host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true})));
  assert.ok(host.querySelector('[role="alert"]'));assert.equal(host.querySelector('fieldset').disabled,false);authChecks++;
  await render(React.createElement(ImportPanel,{onImported:async()=>true,canCommit:()=>true}));
+ const xlsxFile = host.querySelector('input[type="file"]');
+ Object.defineProperty(xlsxFile,'files',{value:[{name:'căn-hộ.xlsx',size:256}]});
+ globalThis.fetch=async(url,options)=>{
+  if(url.endsWith('/inspect'))return {ok:true,json:async()=>({
+   sheets:[{name:'Căn hộ',rows:1},{name:'Hướng dẫn',rows:0}],selected:'Căn hộ',
+   headers:['Mã căn'],mapping:{code:0},sample:[],fields:[{value:'code'}]
+  })};
+  assert.equal(url,'/api/import/units/xlsx/sheet');
+  assert.equal(decodeURIComponent(options.headers['X-Aurel-Sheet-Encoded']),'Hướng dẫn');
+  return {ok:false,status:400,json:async()=>({error:'Trang tính không có dữ liệu'})};
+ };
+ await act(async()=>xlsxFile.dispatchEvent(new Event('change',{bubbles:true})));
+ const sheetSelect=host.querySelector('#xlsx-sheet');
+ assert.equal(sheetSelect.value,'Căn hộ');
+ await act(async()=>{sheetSelect.value='Hướng dẫn';sheetSelect.dispatchEvent(new Event('change',{bubbles:true}))});
+ assert.equal(sheetSelect.value,'Căn hộ');
+ assert.match(host.querySelector('[role="alert"]').textContent,/Trang tính không có dữ liệu/);checks++;
  await click('CSV UTF-8');await input('.import-textarea','Mã căn\nQA-DOM-1');
  assert.equal(unloadBlocked(),true,'CSV draft needs unload protection');checks++;
  let finish,calls=0;

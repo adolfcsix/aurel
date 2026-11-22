@@ -22,16 +22,18 @@ export const periodTotals=(d,period)=>d.schedules.filter(x=>x.period===period&&!
 /** Match the backend reminderQueue semantics for the sidebar badge.
  * A schedule without dueOn is NOT an overdue reminder. Cancelled periods,
  * settled amounts and post-termination due dates are not actionable either. */
-export const pendingReminderCount=(data,now=isoToday())=>{
- const lead=Math.min(90,Math.max(0,Number(data.preferences?.reminderDays??5)||0));
+export const reminderLeadDays = preferences => Math.min(90, Math.max(0, Number(preferences?.reminderDays ?? 5) || 0));
+export const pendingReminderItems=(data,now=isoToday())=>{
+ const lead=reminderLeadDays(data.preferences);
  const horizon=new Date(Date.parse(now+'T00:00:00Z')+lead*86400000).toISOString().slice(0,10);
  return (data.schedules||[]).filter(s=>{
   if(s.status!=='open'||!s.dueOn||s.dueOn>horizon)return false;
   const lease=(data.leases||[]).find(row=>sameDossierId(row.id,s.leaseId));
   if(lease?.status==='ended'&&lease.terminatedOn&&s.dueOn>lease.terminatedOn)return false;
-  return bill(data,s).left>0;
- }).length;
+  return true;
+ }).map(s=>bill(data,s)).filter(s=>s.left>0).sort((a,b)=>a.dueOn.localeCompare(b.dueOn));
 };
+export const pendingReminderCount=(data,now=isoToday())=>pendingReminderItems(data,now).length;
 /** Show the latest seven actual billing periods, ordered oldest-to-newest.
  * Taking .sort().slice(0,7) used to display the first seven historical periods. */
 /** A "next payment" callout must have an actual due date and outstanding

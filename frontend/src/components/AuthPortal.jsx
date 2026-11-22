@@ -73,6 +73,7 @@ export default function AuthPortal({onLogin,onRegistered,loading=false,error}){
      <button className="aurel-auth-submit" type="submit" disabled={busy} aria-busy={busy}>{busy?'Đang xử lý…':activation?'Lưu mật khẩu':registration?'Tạo tài khoản':'Đăng nhập'}<Icon name="arrowRight" size={18}/></button>
      {registration&&<p className="aurel-entry-note">Tài khoản mới có quyền Người xem.</p>}
      {activation&&<button className="aurel-auth-textbutton aurel-entry-back" disabled={busy} type="button" onClick={()=>changeMode('login')}>Quay lại đăng nhập</button>}
+     {mode==='login'&&<button className="aurel-auth-textbutton aurel-entry-back" disabled={busy} type="button" onClick={()=>changeMode('activate')}>Dùng mật khẩu tạm</button>}
     </form>:<section className="aurel-entry-help"><p>Liên hệ quản trị viên để được cấp mật khẩu tạm.</p><button className="aurel-auth-submit" type="button" onClick={()=>changeMode('activate')}>Dùng mật khẩu tạm <Icon name="arrowRight" size={18}/></button><button className="aurel-auth-textbutton aurel-entry-back" type="button" onClick={()=>changeMode('login')}>Quay lại đăng nhập</button></section>}
    </div>
    <footer className="aurel-entry-footer">© {new Date().getFullYear()} AUREL</footer>

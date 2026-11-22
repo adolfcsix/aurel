@@ -16,7 +16,7 @@ export default function ImportPanel({onImported,onUncertain,canCommit}){
  const reading=useRef(false);
  const startRead=()=>{if(reading.current||gate.current.locked)return false;reading.current=true;setBusy(true);return true};
  const finishRead=()=>{reading.current=false;setBusy(false)};
- const resetMode=next=>{if(reading.current||gate.current.locked)return;setMode(next);setFile(null);setCsv('');setSheets([]);setSheet('');setHeaders([]);setMapping({});setSample([]);setFields([]);messageClear()};
+ const resetMode=next=>{if(next===mode||reading.current||gate.current.locked)return;setMode(next);setFile(null);setCsv('');setSheets([]);setSheet('');setHeaders([]);setMapping({});setSample([]);setFields([]);messageClear()};
  const gate=useRef(createSubmissionGate());const [locked,setLocked]=useState(false);
  useEffect(()=>protectPendingWork(window,busy||!!file||!!csv.trim()),[busy,file,csv]);
  // Tell operators which original spreadsheet columns will be discarded rather
@@ -24,42 +24,59 @@ export default function ImportPanel({onImported,onUncertain,canCommit}){
  const mappedColumnIndexes=new Set(Object.values(mapping).filter(x=>x!==''&&x!=null).map(Number));
  const ignoredExcelHeaders=headers.filter((heading,index)=>String(heading??'').trim()&&!mappedColumnIndexes.has(index));
  const messageClear=()=>{setError('');setSuccess('');setReport(null)};
- const send=(endpoint,more={})=>apiBinary('/import/units/xlsx/'+endpoint,{body:file,headers:{'Content-Type':uploadType,'X-Aurel-Sheet':sheet,'X-Aurel-Mapping':JSON.stringify(mapping),...more}});
- const choose=async(e)=>{
+ const send=(endpoint,more={})=>apiBinary('/import/units/xlsx/'+endpoint,{body:file,headers:{'Content-Type':uploadType,'X-Aurel-Sheet-Encoded':encodeURIComponent(sheet),'X-Aurel-Mapping':JSON.stringify(mapping),...more}});
+ const choose=async(event)=>{
   if(!startRead())return;
   try{
-  const selected=e.target.files?.[0];messageClear();setFile(null);setCsv('');setHeaders([]);
-  if(!selected)return;
-  if(mode==='xlsx'){
-   if(!/\.xlsx$/i.test(selected.name)){setError('Vui lòng chọn tệp Excel .xlsx (không hỗ trợ .xls hoặc .xlsm)');return}
-   if(selected.size>2*1024*1024){setError('Tệp XLSX phải nhỏ hơn 2 MB');return}
-   setBusy(true);
-   try{
-    const initial=await apiBinary('/import/units/xlsx/inspect',{body:selected,headers:{'Content-Type':uploadType}});
-    setFile(selected);setSheets(initial.sheets);setSheet(initial.selected);setHeaders(initial.headers);setMapping(initial.mapping);setSample(initial.sample);setFields(initial.fields);
-   }catch(err){setError(err.message)}
-  }else{
-   if(!/\.(csv|txt)$/i.test(selected.name)){setError('Chỉ chấp nhận CSV UTF-8');return}
-   if(selected.size>1024*1000){setError('CSV phải nhỏ hơn 1 MB');return}
-   setFile(selected);setCsv(await selected.text());
-  }
-  }catch(err){setError(err.message)}finally{finishRead()}
+   const selected=event.target.files?.[0];
+   messageClear();
+   setFile(null);
+   setCsv('');
+   setHeaders([]);
+   if(!selected)return;
+
+   if(mode==='xlsx'){
+    if(!/\.xlsx$/i.test(selected.name)){setError('Chỉ chấp nhận tệp .xlsx');return}
+    if(selected.size>2*1024*1024){setError('Tệp XLSX không được vượt quá 2 MB');return}
+    const initial=await apiBinary('/import/units/xlsx/inspect',{body:selected});
+    setSheets(initial.sheets);
+    setSheet(initial.selected);
+    setHeaders(initial.headers);
+    setMapping(initial.mapping);
+    setSample(initial.sample);
+    setFields(initial.fields);
+   }else{
+    if(!/\.(csv|txt)$/i.test(selected.name)){setError('Chỉ chấp nhận CSV UTF-8');return}
+    if(selected.size>1024*1000){setError('Tệp CSV không được vượt quá 1 MB');return}
+    setCsv(await selected.text());
+   }
+   setFile(selected);
+  }catch(error){setError(error.message)}
+  finally{finishRead()}
  };
  const sheetChange=async(name)=>{
   if(!startRead())return;
-  setSheet(name);setReport(null);setError('');setBusy(true);
+  messageClear();
   try{
-   const result=await apiBinary('/import/units/xlsx/sheet',{body:file,headers:{'Content-Type':uploadType,'X-Aurel-Sheet':name}});
-   setHeaders(result.headers);setMapping(result.mapping);setSample(result.sample);setFields(result.fields);
-  }catch(err){setError(err.message)}finally{finishRead()}
+   const result=await apiBinary('/import/units/xlsx/sheet',{
+    body:file,headers:{'X-Aurel-Sheet-Encoded':encodeURIComponent(name)}
+   });
+   setSheet(name);
+   setHeaders(result.headers);
+   setMapping(result.mapping);
+   setSample(result.sample);
+   setFields(result.fields);
+  }catch(error){setError(error.message)}
+  finally{finishRead()}
  };
  const preview=async()=>{
   if(!startRead())return;
-  setBusy(true);messageClear();
+  messageClear();
   try{
-   const result=mode==='xlsx'?await send('preview'):await api('/import/units/preview',{method:'POST',body:{csv}});
+   const result=mode==='xlsx' ? await send('preview') : await api('/import/units/preview',{method:'POST',body:{csv}});
    setReport(result);
-  }catch(err){setError(err.message)}finally{finishRead()}
+  }catch(error){setError(error.message)}
+  finally{finishRead()}
  };
  const commit=async()=>{
   if(reading.current||!report||report.errors.length||!report.valid||canCommit?.()===false||!gate.current.begin())return;

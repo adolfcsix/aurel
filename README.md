@@ -193,7 +193,7 @@ PostgreSQL bắt đầu với kho nghiệp vụ trống. Nếu thực sự muố
 npm run db:import-demo
 ```
 
-Sau đó bỏ biến xác nhận. Công cụ từ chối nhập đè database đã có dự án hoặc căn hộ. Không nhập mẫu vào kho dữ liệu đang sử dụng thật. Đổi từ JSON sang PostgreSQL **không tự chuyển dữ liệu JSON đã nhập**; cần kế hoạch chuyển đổi và đối soát riêng.
+Sau đó bỏ biến xác nhận. Công cụ chỉ nhập vào kho chưa có hồ sơ nghiệp vụ và giữ nguyên tài khoản, cấu hình và nhật ký hiện có. Không nhập mẫu vào kho dữ liệu đang sử dụng thật. Đổi từ JSON sang PostgreSQL **không tự chuyển dữ liệu JSON đã nhập**; cần kế hoạch chuyển đổi và đối soát riêng.
 
 ## Tài khoản và phân quyền
 
@@ -246,7 +246,7 @@ aurel/
 | `AUREL_PG_TEST_DATABASE_URL` | Database kiểm thử riêng, tên kết thúc bằng `_test` |
 | `AUREL_PG_TEST_WRITE_ACK` | Đặt `yes` để xác nhận ghi trên database thử được chấp nhận |
 
-`.env` được đọc khi khởi động; sau khi sửa cấu hình cần dừng và chạy lại. Nếu đổi cổng backend, phải đổi cả đích proxy frontend. Biến môi trường hệ điều hành có thể ưu tiên hơn `.env`.
+`.env` được đọc khi khởi động; sau khi sửa cấu hình cần dừng và chạy lại. Frontend dùng cổng `PORT` từ `.env` ở thư mục gốc. Đặt riêng `AUREL_API_PROXY_TARGET` nếu API chạy ở địa chỉ khác. Biến môi trường hệ điều hành có thể ưu tiên hơn `.env`.
 
 ## Các lệnh thường dùng
 
@@ -317,7 +317,7 @@ Nếu dùng PostgreSQL, chạy `npm run db:migrate`; tiếp theo `npm run qa:gat
 | Thiếu `vite`, `react`, `express`, `jsdom` | Chạy `npm ci --include=optional --no-audit --no-fund` ở thư mục gốc; không cài chế độ bỏ devDependencies khi chạy QA |
 | `EAI_AGAIN`, timeout khi cài npm | Kiểm tra Internet/proxy/DNS, thử cài lại; không tắt xác minh TLS để khắc phục |
 | `ECONNREFUSED 4100` hoặc không tải được dữ liệu | Kiểm tra backend còn chạy, đọc lỗi terminal, mở `/api/health` và `/api/ready`; so lại cổng/proxy |
-| `EADDRINUSE` | Dừng tiến trình đang chiếm cổng hoặc đổi cổng và proxy tương ứng |
+| `EADDRINUSE` | Dừng tiến trình đang chiếm cổng hoặc đổi `PORT` rồi khởi động lại ứng dụng |
 | PostgreSQL không kết nối | Kiểm tra Docker/service, host/cổng/user/password/database; chạy `npm run doctor` |
 | Migrate báo chưa đặt `DATABASE_URL` | Tạo `.env` tại gốc và bật cấu hình PostgreSQL đúng |
 | Đăng nhập không giữ phiên ở HTTP local | Giữ `COOKIE_SECURE=false`, dùng hostname nhất quán; khởi động lại sau khi sửa `.env` |
